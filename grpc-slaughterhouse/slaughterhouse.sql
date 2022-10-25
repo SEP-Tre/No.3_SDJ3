@@ -29,7 +29,8 @@ CREATE TABLE IF NOT EXISTS product
 );
 
 CREATE VIEW product_trace AS
-SELECT type,
+SELECT product_id,
+       type,
        product.tray_id,
        t.part_name,
        t.part_id,
@@ -74,6 +75,14 @@ VALUES (0, 'tasty leg'),
 
 SELECT *
 FROM product_trace;
+
+SELECT *
+FROM product_trace
+WHERE animal_id = 1;
+
+SELECT *
+FROM product_trace
+WHERE product_id = 1;
 
 
 
