@@ -12,7 +12,6 @@ import repository.TrayRepository;
 import java.util.ArrayList;
 import java.util.Collections;
 
-@Service
 public class SlaughterhouseApplication
 {
     @Autowired
@@ -54,8 +53,19 @@ public class SlaughterhouseApplication
     }
     private ArrayList<Product> getProductsWithAnimal(int animalId)
     {
-        Iterable<Part> allFoundParts = partRepo.findAll();
-        return null;
+        Iterable<Part> allParts = partRepo.findAll();
+        ArrayList<Integer> allFoundPartsIds = new ArrayList<>();
+        allParts.forEach(part -> {
+            if(animalId==part.getAnimalId()) allFoundPartsIds.add(part.getPartId());
+        });
+        Iterable<Tray> allFoundTrays = trayRepo.findAllById(allFoundPartsIds);
+        ArrayList<Integer> allFoundTraysIds = new ArrayList<>();
+        allFoundTrays.forEach(tray ->{
+            allFoundTraysIds.add(tray.getTrayId());
+        });
+        Iterable<Product> allFoundProducts = productRepo.findAllById(allFoundTraysIds);
+        //Todo problem might be here, if doesn't work use 'for each' on Iterable.
+        return (ArrayList<Product>) allFoundProducts;
     }
 
 
