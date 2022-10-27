@@ -19,10 +19,8 @@ message ProductIdList{
 }
 
 
-service ProductsWithAnimal{
+service RecallService{
   rpc productsWithAnimal(AnimalId) returns(ProductIdList);
-}
-
-service AnimalsInProduct{
   rpc animalsInProduct(ProductId) returns (AnimalsIdList);
 }
+

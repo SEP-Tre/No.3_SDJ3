@@ -76,13 +76,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return slaughterhouse.grpc.RecallService.internal_static_slaughterhouse_grpc_AnimalId_descriptor;
+    return slaughterhouse.grpc.RecallServiceOuterClass.internal_static_slaughterhouse_grpc_AnimalId_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return slaughterhouse.grpc.RecallService.internal_static_slaughterhouse_grpc_AnimalId_fieldAccessorTable
+    return slaughterhouse.grpc.RecallServiceOuterClass.internal_static_slaughterhouse_grpc_AnimalId_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             slaughterhouse.grpc.AnimalId.class, slaughterhouse.grpc.AnimalId.Builder.class);
   }
@@ -262,13 +262,13 @@ private static final long serialVersionUID = 0L;
       slaughterhouse.grpc.AnimalIdOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return slaughterhouse.grpc.RecallService.internal_static_slaughterhouse_grpc_AnimalId_descriptor;
+      return slaughterhouse.grpc.RecallServiceOuterClass.internal_static_slaughterhouse_grpc_AnimalId_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return slaughterhouse.grpc.RecallService.internal_static_slaughterhouse_grpc_AnimalId_fieldAccessorTable
+      return slaughterhouse.grpc.RecallServiceOuterClass.internal_static_slaughterhouse_grpc_AnimalId_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               slaughterhouse.grpc.AnimalId.class, slaughterhouse.grpc.AnimalId.Builder.class);
     }
@@ -299,7 +299,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return slaughterhouse.grpc.RecallService.internal_static_slaughterhouse_grpc_AnimalId_descriptor;
+      return slaughterhouse.grpc.RecallServiceOuterClass.internal_static_slaughterhouse_grpc_AnimalId_descriptor;
     }
 
     @java.lang.Override
