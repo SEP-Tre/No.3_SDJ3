@@ -73,22 +73,24 @@ public class RecallImpl extends RecallServiceGrpc.RecallServiceImplBase
         Iterable<Tray> allTrays = trayRepo.findAll();
         allTrays.forEach(tray ->
         {
-            if(foundProduct.get().getTrayId()==tray.getTrayId())
+            if(foundProduct.get().getTray_id()==tray.getTray_id())
             {
                 trayList.add(tray);
             }
         });
-
+        System.out.println("Those are the all found trays: " + trayList);
         //Optional<Tray> foundTray = trayRepo.findById(foundProduct.get().getTrayId());
-        ArrayList<Integer> allFoundPartIds = new ArrayList<>();
+        ArrayList<Integer> allFoundPartIdsList = new ArrayList<>();
         trayList.forEach(tray -> {
-            allFoundPartIds.add(tray.getPartId());
+            allFoundPartIdsList.add(tray.getPart_id());
         });
-        Iterable<Part> allParts = partRepo.findAllById(allFoundPartIds);
+        System.out.println("All found part ids: " + allFoundPartIdsList);
+        Iterable<Part> allParts = partRepo.findAllById(allFoundPartIdsList);
         ArrayList<Integer> animalIds = new ArrayList<>();
         allParts.forEach(part -> {
-            animalIds.add(part.getAnimalId());
+            animalIds.add(part.getAnimal_id());
         });
+        System.out.println(animalIds);
         return animalIds;
 
         /*ArrayList<Part> allFoundPartsCorrect = new ArrayList<>();
@@ -125,13 +127,13 @@ public class RecallImpl extends RecallServiceGrpc.RecallServiceImplBase
         ArrayList<Integer> allFoundPartsIds = new ArrayList<>();
         allParts.forEach(part ->
         {
-            if (animalId == part.getAnimalId()) allFoundPartsIds.add(part.getPartId());
+            if (animalId == part.getAnimal_id()) allFoundPartsIds.add(part.getPart_id());
         });
         Iterable<Tray> allFoundTrays = trayRepo.findAllById(allFoundPartsIds);
         ArrayList<Integer> allFoundTraysIds = new ArrayList<>();
         allFoundTrays.forEach(tray ->
         {
-            allFoundTraysIds.add(tray.getTrayId());
+            allFoundTraysIds.add(tray.getTray_id());
         });
         Iterable<Product> allFoundProducts = productRepo.findAllById(allFoundTraysIds);
         //Todo problem might be here, if doesn't work use 'for each' on Iterable.

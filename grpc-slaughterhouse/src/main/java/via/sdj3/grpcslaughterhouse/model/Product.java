@@ -7,47 +7,43 @@ import javax.persistence.Id;
 public class Product
 {
     @Id
-    private int productId;
-    private int trayId;
+    private int product_id;
+    private int tray_id;
     private String type;
 
     public Product() {
     }
 
-    public Product(int productId, int trayId, String type)
-    {
-        this.productId = productId;
-        this.trayId = trayId;
-        this.type = type;
+    public int getProduct_id() {
+        return product_id;
     }
 
-    public int getProductId()
-    {
-        return productId;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 
-    public void setProductId(int productId)
-    {
-        this.productId = productId;
+    public int getTray_id() {
+        return tray_id;
     }
 
-    public int getTrayId()
-    {
-        return trayId;
+    public void setTray_id(int tray_id) {
+        this.tray_id = tray_id;
     }
 
-    public void setTrayId(int trayId)
-    {
-        this.trayId = trayId;
-    }
-
-    public String getType()
-    {
+    public String getType() {
         return type;
     }
 
-    public void setType(String type)
-    {
+    public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "product_id=" + product_id +
+                ", tray_id=" + tray_id +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

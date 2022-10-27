@@ -22,6 +22,7 @@ public class SlaughterhouseApplication
     @Autowired
     private ProductRepository productRepo;
 
+    /*
     public ArrayList<Integer> getAnimalsInProduct(int productId)
     {
         Iterable<Product> allFoundProducts = productRepo.findAllById(Collections.singleton(productId));
@@ -68,7 +69,7 @@ public class SlaughterhouseApplication
         //Todo problem might be here, if doesn't work use 'for each' on Iterable.
         return (ArrayList<Product>) allFoundProducts;
     }
-
+*/
 
 
 }

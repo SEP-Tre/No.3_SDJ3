@@ -7,60 +7,43 @@ import javax.persistence.Id;
 public class Tray
 {
     @Id
-    private int trayId;
-    private int partId;
-    private String partName;
+    private int tray_id;
+    private int part_id;
+    private String part_name;
 
     public Tray() {
     }
 
-    public int getTrayId()
-    {
-        return trayId;
+    public int getTray_id() {
+        return tray_id;
     }
 
-    public void setTrayId(int trayId)
-    {
-        this.trayId = trayId;
+    public void setTray_id(int tray_id) {
+        this.tray_id = tray_id;
     }
 
-    public int getPartId()
-    {
-        return partId;
+    public int getPart_id() {
+        return part_id;
     }
 
-    public void setPartId(int partId)
-    {
-        this.partId = partId;
+    public void setPart_id(int part_id) {
+        this.part_id = part_id;
     }
 
-    public String getPartName()
-    {
-        return partName;
+    public String getPart_name() {
+        return part_name;
     }
 
-    public void setPartName(String partName)
-    {
-        this.partName = partName;
+    public void setPart_name(String part_name) {
+        this.part_name = part_name;
     }
 
-    public float getWeightCapacity()
-    {
-        return weightCapacity;
-    }
-
-    public void setWeightCapacity(float weightCapacity)
-    {
-        this.weightCapacity = weightCapacity;
-    }
-
-    private float weightCapacity;
-
-    public Tray(int trayId, int partId, String partName, float weightCapacity)
-    {
-        this.trayId = trayId;
-        this.partId = partId;
-        this.partName = partName;
-        this.weightCapacity = weightCapacity;
+    @Override
+    public String toString() {
+        return "Tray{" +
+                "tray_id=" + tray_id +
+                ", part_id=" + part_id +
+                ", part_name='" + part_name + '\'' +
+                '}';
     }
 }
