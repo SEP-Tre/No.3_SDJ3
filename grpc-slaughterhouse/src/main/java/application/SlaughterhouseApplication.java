@@ -21,7 +21,7 @@ public class SlaughterhouseApplication
     @Autowired
     private ProductRepository productRepo;
 
-    private ArrayList<Integer> getAnimalsInProduct(int productId)
+    public ArrayList<Integer> getAnimalsInProduct(int productId)
     {
         Iterable<Product> allFoundProducts = productRepo.findAllById(Collections.singleton(productId));
 
@@ -51,7 +51,7 @@ public class SlaughterhouseApplication
         });
         return animalsIds;
     }
-    private ArrayList<Product> getProductsWithAnimal(int animalId)
+    public ArrayList<Product> getProductsWithAnimal(int animalId)
     {
         Iterable<Part> allParts = partRepo.findAll();
         ArrayList<Integer> allFoundPartsIds = new ArrayList<>();
