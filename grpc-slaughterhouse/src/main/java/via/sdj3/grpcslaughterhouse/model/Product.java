@@ -1,4 +1,4 @@
-package model;
+package via.sdj3.grpcslaughterhouse.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,6 +10,9 @@ public class Product
     private int productId;
     private int trayId;
     private String type;
+
+    public Product() {
+    }
 
     public Product(int productId, int trayId, String type)
     {

@@ -1,4 +1,4 @@
-package model;
+package via.sdj3.grpcslaughterhouse.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,6 +11,9 @@ public class Part
     private int animalId;
     private String partName;
     private float weight;
+
+    public Part() {
+    }
 
     public Part(int partId, int animalId, String partName, float weight)
     {

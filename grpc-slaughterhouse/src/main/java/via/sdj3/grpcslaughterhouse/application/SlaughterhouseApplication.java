@@ -1,17 +1,18 @@
-package application;
+package via.sdj3.grpcslaughterhouse.application;
 
-import model.Part;
-import model.Product;
-import model.Tray;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.PartRepository;
-import repository.ProductRepository;
-import repository.TrayRepository;
+import via.sdj3.grpcslaughterhouse.model.Part;
+import via.sdj3.grpcslaughterhouse.model.Product;
+import via.sdj3.grpcslaughterhouse.model.Tray;
+import org.springframework.beans.factory.annotation.Autowired;
+import via.sdj3.grpcslaughterhouse.repository.PartRepository;
+import via.sdj3.grpcslaughterhouse.repository.ProductRepository;
+import via.sdj3.grpcslaughterhouse.repository.TrayRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
+@Service
 public class SlaughterhouseApplication
 {
     @Autowired
