@@ -17,38 +17,37 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 @GRpcService
-public class RecallImpl extends RecallServiceGrpc.RecallServiceImplBase {
+public class RecallImpl extends RecallServiceGrpc.RecallServiceImplBase
+{
 
     //private SlaughterhouseApplication api = new SlaughterhouseApplication();
 
     @Override
-    public void animalsInProduct(ProductId request, StreamObserver<AnimalsIdList> responseObserver) {
+    public void animalsInProduct(ProductId request, StreamObserver<AnimalsIdList> responseObserver)
+    {
         // super.animalsInProduct(request, responseObserver);
         System.out.println("animalsInProduct method in RecallImpl has been called");
         System.out.println("Received request: " + request.toString());
         int productIdInt = request.getId();
-        var ref = new Object() {
-            AnimalsIdList animalsIdList;
-        };
         ArrayList<Integer> animalsInProduct = getAnimalsInProduct(productIdInt);
         System.out.println("This is the animals in product list:");
         System.out.println(animalsInProduct);
-        var ref1 = new Object() {
-            int index = 0;
-        };
-        animalsInProduct.forEach(animalId -> {
-            AnimalId idProto = AnimalId.newBuilder().setId(animalId).build();
-            ref.animalsIdList = AnimalsIdList.newBuilder().setList(ref1.index, idProto).build();
-            ref1.index++;
+        ArrayList<AnimalId> animalsForProto = new ArrayList<>();
+        animalsInProduct.forEach(animalId ->
+        {
+            AnimalId animalIdProto = AnimalId.newBuilder().setId(animalId).build();
+            animalsForProto.add(animalIdProto);
         });
-        responseObserver.onNext(ref.animalsIdList);
+        AnimalsIdList animalsIdList = AnimalsIdList.newBuilder().addAllList(animalsForProto).build();
+        responseObserver.onNext(animalsIdList);
         responseObserver.onCompleted();
 
 
     }
 
     @Override
-    public void productsWithAnimal(AnimalId request, StreamObserver<ProductIdList> responseObserver) {
+    public void productsWithAnimal(AnimalId request, StreamObserver<ProductIdList> responseObserver)
+    {
         // super.productsWithAnimal(request, responseObserver);
         System.out.println("productsWithAnimal method in RecallImpl has been called");
         System.out.println("Received request: " + request.toString());
@@ -64,7 +63,8 @@ public class RecallImpl extends RecallServiceGrpc.RecallServiceImplBase {
     @Autowired
     private ProductRepository productRepo;
 
-    public ArrayList<Integer> getAnimalsInProduct(int productId) {
+    public ArrayList<Integer> getAnimalsInProduct(int productId)
+    {
         Iterable<Product> allFoundProducts = productRepo.findAllById(Collections.singleton(productId));
 
         ArrayList<Integer> allFoundTraysIds = new ArrayList<>();
@@ -74,8 +74,7 @@ public class RecallImpl extends RecallServiceGrpc.RecallServiceImplBase {
         });
 
         //Problems may be here
-        Iterable<Tray> allFoundTrays =
-                trayRepo.findAllById(allFoundTraysIds);
+        Iterable<Tray> allFoundTrays = trayRepo.findAllById(allFoundTraysIds);
 
         ArrayList<Integer> allFoundPartsIds = new ArrayList<>();
         allFoundTrays.forEach(tray ->
@@ -83,8 +82,7 @@ public class RecallImpl extends RecallServiceGrpc.RecallServiceImplBase {
             allFoundPartsIds.add(tray.getPartId());
         });
 
-        Iterable<Part> allFoundParts =
-                partRepo.findAllById(allFoundPartsIds);
+        Iterable<Part> allFoundParts = partRepo.findAllById(allFoundPartsIds);
 
         ArrayList<Integer> animalsIds = new ArrayList<>();
         allFoundParts.forEach(part ->
@@ -94,15 +92,18 @@ public class RecallImpl extends RecallServiceGrpc.RecallServiceImplBase {
         return animalsIds;
     }
 
-    public ArrayList<Product> getProductsWithAnimal(int animalId) {
+    public ArrayList<Product> getProductsWithAnimal(int animalId)
+    {
         Iterable<Part> allParts = partRepo.findAll();
         ArrayList<Integer> allFoundPartsIds = new ArrayList<>();
-        allParts.forEach(part -> {
+        allParts.forEach(part ->
+        {
             if (animalId == part.getAnimalId()) allFoundPartsIds.add(part.getPartId());
         });
         Iterable<Tray> allFoundTrays = trayRepo.findAllById(allFoundPartsIds);
         ArrayList<Integer> allFoundTraysIds = new ArrayList<>();
-        allFoundTrays.forEach(tray -> {
+        allFoundTrays.forEach(tray ->
+        {
             allFoundTraysIds.add(tray.getTrayId());
         });
         Iterable<Product> allFoundProducts = productRepo.findAllById(allFoundTraysIds);
