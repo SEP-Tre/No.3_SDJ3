@@ -15,6 +15,7 @@ import via.sdj3.grpcslaughterhouse.repository.TrayRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Optional;
 
 @GRpcService
 public class RecallImpl extends RecallServiceGrpc.RecallServiceImplBase
@@ -65,7 +66,7 @@ public class RecallImpl extends RecallServiceGrpc.RecallServiceImplBase
 
     public ArrayList<Integer> getAnimalsInProduct(int productId)
     {
-        Iterable<Product> allFoundProducts = productRepo.findAllById(Collections.singleton(productId));
+        Optional<Product> allFoundProducts = productRepo.findById(productId);
 
         ArrayList<Integer> allFoundTraysIds = new ArrayList<>();
         allFoundProducts.forEach(product ->
