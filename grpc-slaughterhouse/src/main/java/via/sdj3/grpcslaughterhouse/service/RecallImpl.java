@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import via.sdj3.grpcslaughterhouse.application.SlaughterhouseApplication;
 import via.sdj3.grpcslaughterhouse.model.Part;
 import via.sdj3.grpcslaughterhouse.model.Product;
+import via.sdj3.grpcslaughterhouse.model.Product_trace;
 import via.sdj3.grpcslaughterhouse.model.Tray;
 import via.sdj3.grpcslaughterhouse.protobuf.*;
 import via.sdj3.grpcslaughterhouse.repository.PartRepository;
 import via.sdj3.grpcslaughterhouse.repository.ProductRepository;
+import via.sdj3.grpcslaughterhouse.repository.ProductTraceRepository;
 import via.sdj3.grpcslaughterhouse.repository.TrayRepository;
 
 import java.lang.reflect.Array;
@@ -64,9 +66,23 @@ public class RecallImpl extends RecallServiceGrpc.RecallServiceImplBase
     private TrayRepository trayRepo;
     @Autowired
     private ProductRepository productRepo;
+    @Autowired
+    private ProductTraceRepository productTraceRepo;
 
     public ArrayList<Integer> getAnimalsInProduct(int productId)
     {
+        //System.out.println(productTraceRepo.findAll());
+        // TODO: 10/27/2022 The trace repo is working.
+        Iterable<Product_trace> allTraces = productTraceRepo.findAll();
+        ArrayList<Product_trace> allFoundTraces = new ArrayList<>();
+        allTraces.forEach(trace ->{
+            if(productId==trace.getProduct_id())
+            {
+                System.out.println(trace.getProduct_id());
+                allFoundTraces.add(trace);
+            }
+        });
+        System.out.println(allFoundTraces);
         Optional<Product> foundProduct = productRepo.findById(productId);
 
         ArrayList<Tray> trayList= new ArrayList<>();

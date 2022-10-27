@@ -10,6 +10,15 @@ public class Tray
     private int tray_id;
     private int part_id;
     private String part_name;
+    private int weight_capacity;
+
+    public int getWeight_capacity() {
+        return weight_capacity;
+    }
+
+    public void setWeight_capacity(int weight_capacity) {
+        this.weight_capacity = weight_capacity;
+    }
 
     public Tray() {
     }
@@ -44,6 +53,7 @@ public class Tray
                 "tray_id=" + tray_id +
                 ", part_id=" + part_id +
                 ", part_name='" + part_name + '\'' +
+                ", weight_capacity=" + weight_capacity +
                 '}';
     }
 }
