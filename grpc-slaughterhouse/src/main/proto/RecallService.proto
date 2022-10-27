@@ -1,0 +1,28 @@
+syntax="proto3";
+option java_multiple_files=true;
+package slaughterhouse.grpc;
+
+message AnimalId{
+  int32 id=1;
+}
+
+message ProductId {
+  int32 id=1;
+}
+
+message AnimalsIdList{
+  repeated AnimalId list=1;
+}
+
+message ProductIdList{
+  repeated ProductId list=1;
+}
+
+
+service ProductsWithAnimal{
+  rpc productsWithAnimal(AnimalId) returns(ProductIdList);
+}
+
+service AnimalsInProduct{
+  rpc animalsInProduct(ProductId) returns (AnimalsIdList);
+}
