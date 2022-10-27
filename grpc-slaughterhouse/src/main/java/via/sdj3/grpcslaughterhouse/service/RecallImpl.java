@@ -13,6 +13,7 @@ import via.sdj3.grpcslaughterhouse.repository.PartRepository;
 import via.sdj3.grpcslaughterhouse.repository.ProductRepository;
 import via.sdj3.grpcslaughterhouse.repository.TrayRepository;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Optional;
@@ -66,16 +67,39 @@ public class RecallImpl extends RecallServiceGrpc.RecallServiceImplBase
 
     public ArrayList<Integer> getAnimalsInProduct(int productId)
     {
-        Optional<Product> allFoundProducts = productRepo.findById(productId);
+        Optional<Product> foundProduct = productRepo.findById(productId);
 
-        ArrayList<Integer> allFoundTraysIds = new ArrayList<>();
-        allFoundProducts.forEach(product ->
+        ArrayList<Tray> trayList= new ArrayList<>();
+        Iterable<Tray> allTrays = trayRepo.findAll();
+        allTrays.forEach(tray ->
         {
-            allFoundTraysIds.add(product.getTrayId());
+            if(foundProduct.get().getTrayId()==tray.getTrayId())
+            {
+                trayList.add(tray);
+            }
         });
 
-        //Problems may be here
-        Iterable<Tray> allFoundTrays = trayRepo.findAllById(allFoundTraysIds);
+        //Optional<Tray> foundTray = trayRepo.findById(foundProduct.get().getTrayId());
+        ArrayList<Integer> allFoundPartIds = new ArrayList<>();
+        trayList.forEach(tray -> {
+            allFoundPartIds.add(tray.getPartId());
+        });
+        Iterable<Part> allParts = partRepo.findAllById(allFoundPartIds);
+        ArrayList<Integer> animalIds = new ArrayList<>();
+        allParts.forEach(part -> {
+            animalIds.add(part.getAnimalId());
+        });
+        return animalIds;
+
+        /*ArrayList<Part> allFoundPartsCorrect = new ArrayList<>();
+        allParts.forEach(part -> {
+            trayList.forEach(tray -> {
+                if(tray.getPartId() ==  )
+            });
+
+        });
+
+
 
         ArrayList<Integer> allFoundPartsIds = new ArrayList<>();
         allFoundTrays.forEach(tray ->
@@ -91,6 +115,8 @@ public class RecallImpl extends RecallServiceGrpc.RecallServiceImplBase
             animalsIds.add(part.getAnimalId());
         });
         return animalsIds;
+
+         */
     }
 
     public ArrayList<Product> getProductsWithAnimal(int animalId)
