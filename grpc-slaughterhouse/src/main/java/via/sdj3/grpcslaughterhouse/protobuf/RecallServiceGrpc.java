@@ -1,4 +1,4 @@
-package slaughterhouse.grpc;
+package via.sdj3.grpcslaughterhouse.protobuf;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
@@ -14,29 +14,29 @@ public final class RecallServiceGrpc {
   public static final String SERVICE_NAME = "slaughterhouse.grpc.RecallService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<slaughterhouse.grpc.AnimalId,
-      slaughterhouse.grpc.ProductIdList> getProductsWithAnimalMethod;
+  private static volatile io.grpc.MethodDescriptor<via.sdj3.grpcslaughterhouse.protobuf.AnimalId,
+      via.sdj3.grpcslaughterhouse.protobuf.ProductIdList> getProductsWithAnimalMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "productsWithAnimal",
-      requestType = slaughterhouse.grpc.AnimalId.class,
-      responseType = slaughterhouse.grpc.ProductIdList.class,
+      requestType = via.sdj3.grpcslaughterhouse.protobuf.AnimalId.class,
+      responseType = via.sdj3.grpcslaughterhouse.protobuf.ProductIdList.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<slaughterhouse.grpc.AnimalId,
-      slaughterhouse.grpc.ProductIdList> getProductsWithAnimalMethod() {
-    io.grpc.MethodDescriptor<slaughterhouse.grpc.AnimalId, slaughterhouse.grpc.ProductIdList> getProductsWithAnimalMethod;
+  public static io.grpc.MethodDescriptor<via.sdj3.grpcslaughterhouse.protobuf.AnimalId,
+      via.sdj3.grpcslaughterhouse.protobuf.ProductIdList> getProductsWithAnimalMethod() {
+    io.grpc.MethodDescriptor<via.sdj3.grpcslaughterhouse.protobuf.AnimalId, via.sdj3.grpcslaughterhouse.protobuf.ProductIdList> getProductsWithAnimalMethod;
     if ((getProductsWithAnimalMethod = RecallServiceGrpc.getProductsWithAnimalMethod) == null) {
       synchronized (RecallServiceGrpc.class) {
         if ((getProductsWithAnimalMethod = RecallServiceGrpc.getProductsWithAnimalMethod) == null) {
           RecallServiceGrpc.getProductsWithAnimalMethod = getProductsWithAnimalMethod =
-              io.grpc.MethodDescriptor.<slaughterhouse.grpc.AnimalId, slaughterhouse.grpc.ProductIdList>newBuilder()
+              io.grpc.MethodDescriptor.<via.sdj3.grpcslaughterhouse.protobuf.AnimalId, via.sdj3.grpcslaughterhouse.protobuf.ProductIdList>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "productsWithAnimal"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  slaughterhouse.grpc.AnimalId.getDefaultInstance()))
+                  via.sdj3.grpcslaughterhouse.protobuf.AnimalId.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  slaughterhouse.grpc.ProductIdList.getDefaultInstance()))
+                  via.sdj3.grpcslaughterhouse.protobuf.ProductIdList.getDefaultInstance()))
               .setSchemaDescriptor(new RecallServiceMethodDescriptorSupplier("productsWithAnimal"))
               .build();
         }
@@ -45,29 +45,29 @@ public final class RecallServiceGrpc {
     return getProductsWithAnimalMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<slaughterhouse.grpc.ProductId,
-      slaughterhouse.grpc.AnimalsIdList> getAnimalsInProductMethod;
+  private static volatile io.grpc.MethodDescriptor<via.sdj3.grpcslaughterhouse.protobuf.ProductId,
+      via.sdj3.grpcslaughterhouse.protobuf.AnimalsIdList> getAnimalsInProductMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "animalsInProduct",
-      requestType = slaughterhouse.grpc.ProductId.class,
-      responseType = slaughterhouse.grpc.AnimalsIdList.class,
+      requestType = via.sdj3.grpcslaughterhouse.protobuf.ProductId.class,
+      responseType = via.sdj3.grpcslaughterhouse.protobuf.AnimalsIdList.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<slaughterhouse.grpc.ProductId,
-      slaughterhouse.grpc.AnimalsIdList> getAnimalsInProductMethod() {
-    io.grpc.MethodDescriptor<slaughterhouse.grpc.ProductId, slaughterhouse.grpc.AnimalsIdList> getAnimalsInProductMethod;
+  public static io.grpc.MethodDescriptor<via.sdj3.grpcslaughterhouse.protobuf.ProductId,
+      via.sdj3.grpcslaughterhouse.protobuf.AnimalsIdList> getAnimalsInProductMethod() {
+    io.grpc.MethodDescriptor<via.sdj3.grpcslaughterhouse.protobuf.ProductId, via.sdj3.grpcslaughterhouse.protobuf.AnimalsIdList> getAnimalsInProductMethod;
     if ((getAnimalsInProductMethod = RecallServiceGrpc.getAnimalsInProductMethod) == null) {
       synchronized (RecallServiceGrpc.class) {
         if ((getAnimalsInProductMethod = RecallServiceGrpc.getAnimalsInProductMethod) == null) {
           RecallServiceGrpc.getAnimalsInProductMethod = getAnimalsInProductMethod =
-              io.grpc.MethodDescriptor.<slaughterhouse.grpc.ProductId, slaughterhouse.grpc.AnimalsIdList>newBuilder()
+              io.grpc.MethodDescriptor.<via.sdj3.grpcslaughterhouse.protobuf.ProductId, via.sdj3.grpcslaughterhouse.protobuf.AnimalsIdList>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "animalsInProduct"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  slaughterhouse.grpc.ProductId.getDefaultInstance()))
+                  via.sdj3.grpcslaughterhouse.protobuf.ProductId.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  slaughterhouse.grpc.AnimalsIdList.getDefaultInstance()))
+                  via.sdj3.grpcslaughterhouse.protobuf.AnimalsIdList.getDefaultInstance()))
               .setSchemaDescriptor(new RecallServiceMethodDescriptorSupplier("animalsInProduct"))
               .build();
         }
@@ -126,15 +126,15 @@ public final class RecallServiceGrpc {
 
     /**
      */
-    public void productsWithAnimal(slaughterhouse.grpc.AnimalId request,
-        io.grpc.stub.StreamObserver<slaughterhouse.grpc.ProductIdList> responseObserver) {
+    public void productsWithAnimal(via.sdj3.grpcslaughterhouse.protobuf.AnimalId request,
+        io.grpc.stub.StreamObserver<via.sdj3.grpcslaughterhouse.protobuf.ProductIdList> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getProductsWithAnimalMethod(), responseObserver);
     }
 
     /**
      */
-    public void animalsInProduct(slaughterhouse.grpc.ProductId request,
-        io.grpc.stub.StreamObserver<slaughterhouse.grpc.AnimalsIdList> responseObserver) {
+    public void animalsInProduct(via.sdj3.grpcslaughterhouse.protobuf.ProductId request,
+        io.grpc.stub.StreamObserver<via.sdj3.grpcslaughterhouse.protobuf.AnimalsIdList> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAnimalsInProductMethod(), responseObserver);
     }
 
@@ -144,15 +144,15 @@ public final class RecallServiceGrpc {
             getProductsWithAnimalMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
-                slaughterhouse.grpc.AnimalId,
-                slaughterhouse.grpc.ProductIdList>(
+                via.sdj3.grpcslaughterhouse.protobuf.AnimalId,
+                via.sdj3.grpcslaughterhouse.protobuf.ProductIdList>(
                   this, METHODID_PRODUCTS_WITH_ANIMAL)))
           .addMethod(
             getAnimalsInProductMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
-                slaughterhouse.grpc.ProductId,
-                slaughterhouse.grpc.AnimalsIdList>(
+                via.sdj3.grpcslaughterhouse.protobuf.ProductId,
+                via.sdj3.grpcslaughterhouse.protobuf.AnimalsIdList>(
                   this, METHODID_ANIMALS_IN_PRODUCT)))
           .build();
     }
@@ -174,16 +174,16 @@ public final class RecallServiceGrpc {
 
     /**
      */
-    public void productsWithAnimal(slaughterhouse.grpc.AnimalId request,
-        io.grpc.stub.StreamObserver<slaughterhouse.grpc.ProductIdList> responseObserver) {
+    public void productsWithAnimal(via.sdj3.grpcslaughterhouse.protobuf.AnimalId request,
+        io.grpc.stub.StreamObserver<via.sdj3.grpcslaughterhouse.protobuf.ProductIdList> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getProductsWithAnimalMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void animalsInProduct(slaughterhouse.grpc.ProductId request,
-        io.grpc.stub.StreamObserver<slaughterhouse.grpc.AnimalsIdList> responseObserver) {
+    public void animalsInProduct(via.sdj3.grpcslaughterhouse.protobuf.ProductId request,
+        io.grpc.stub.StreamObserver<via.sdj3.grpcslaughterhouse.protobuf.AnimalsIdList> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getAnimalsInProductMethod(), getCallOptions()), request, responseObserver);
     }
@@ -205,14 +205,14 @@ public final class RecallServiceGrpc {
 
     /**
      */
-    public slaughterhouse.grpc.ProductIdList productsWithAnimal(slaughterhouse.grpc.AnimalId request) {
+    public via.sdj3.grpcslaughterhouse.protobuf.ProductIdList productsWithAnimal(via.sdj3.grpcslaughterhouse.protobuf.AnimalId request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getProductsWithAnimalMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public slaughterhouse.grpc.AnimalsIdList animalsInProduct(slaughterhouse.grpc.ProductId request) {
+    public via.sdj3.grpcslaughterhouse.protobuf.AnimalsIdList animalsInProduct(via.sdj3.grpcslaughterhouse.protobuf.ProductId request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getAnimalsInProductMethod(), getCallOptions(), request);
     }
@@ -234,16 +234,16 @@ public final class RecallServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<slaughterhouse.grpc.ProductIdList> productsWithAnimal(
-        slaughterhouse.grpc.AnimalId request) {
+    public com.google.common.util.concurrent.ListenableFuture<via.sdj3.grpcslaughterhouse.protobuf.ProductIdList> productsWithAnimal(
+        via.sdj3.grpcslaughterhouse.protobuf.AnimalId request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getProductsWithAnimalMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<slaughterhouse.grpc.AnimalsIdList> animalsInProduct(
-        slaughterhouse.grpc.ProductId request) {
+    public com.google.common.util.concurrent.ListenableFuture<via.sdj3.grpcslaughterhouse.protobuf.AnimalsIdList> animalsInProduct(
+        via.sdj3.grpcslaughterhouse.protobuf.ProductId request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getAnimalsInProductMethod(), getCallOptions()), request);
     }
@@ -270,12 +270,12 @@ public final class RecallServiceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_PRODUCTS_WITH_ANIMAL:
-          serviceImpl.productsWithAnimal((slaughterhouse.grpc.AnimalId) request,
-              (io.grpc.stub.StreamObserver<slaughterhouse.grpc.ProductIdList>) responseObserver);
+          serviceImpl.productsWithAnimal((via.sdj3.grpcslaughterhouse.protobuf.AnimalId) request,
+              (io.grpc.stub.StreamObserver<via.sdj3.grpcslaughterhouse.protobuf.ProductIdList>) responseObserver);
           break;
         case METHODID_ANIMALS_IN_PRODUCT:
-          serviceImpl.animalsInProduct((slaughterhouse.grpc.ProductId) request,
-              (io.grpc.stub.StreamObserver<slaughterhouse.grpc.AnimalsIdList>) responseObserver);
+          serviceImpl.animalsInProduct((via.sdj3.grpcslaughterhouse.protobuf.ProductId) request,
+              (io.grpc.stub.StreamObserver<via.sdj3.grpcslaughterhouse.protobuf.AnimalsIdList>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -299,7 +299,7 @@ public final class RecallServiceGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return slaughterhouse.grpc.RecallServiceOuterClass.getDescriptor();
+      return via.sdj3.grpcslaughterhouse.protobuf.RecallServiceOuterClass.getDescriptor();
     }
 
     @java.lang.Override

@@ -1,5 +1,6 @@
 syntax="proto3";
 option java_multiple_files=true;
+option java_package="via.sdj3.grpcslaughterhouse.protobuf";
 package slaughterhouse.grpc;
 
 message AnimalId{

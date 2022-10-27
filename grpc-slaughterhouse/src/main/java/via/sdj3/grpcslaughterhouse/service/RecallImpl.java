@@ -1,8 +1,8 @@
-package service;
+package via.sdj3.grpcslaughterhouse.service;
 
 import io.grpc.stub.StreamObserver;
 import org.lognet.springboot.grpc.GRpcService;
-import slaughterhouse.grpc.*;
+import via.sdj3.grpcslaughterhouse.protobuf.*;
 
 @GRpcService
 public class RecallImpl extends RecallServiceGrpc.RecallServiceImplBase {
