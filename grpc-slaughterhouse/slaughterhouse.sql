@@ -49,12 +49,11 @@ CREATE TABLE IF NOT EXISTS tray_in_product
 CREATE VIEW product_trace AS
 SELECT
        product.product_id,
-       type,
-       part_in_tray.id,
        tray.tray_id,
-       part.part_name,
        part.part_id,
        part.animal_id,
+       part.part_name,
+       type,
        part.weight
 
        FROM product, tray_in_product, part_in_tray, tray, part

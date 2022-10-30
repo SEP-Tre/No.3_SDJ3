@@ -25,15 +25,15 @@ public final class RecallServiceOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_slaughterhouse_grpc_ProductId_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_slaughterhouse_grpc_AnimalsIdList_descriptor;
+    internal_static_slaughterhouse_grpc_animalsInProductResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_slaughterhouse_grpc_AnimalsIdList_fieldAccessorTable;
+      internal_static_slaughterhouse_grpc_animalsInProductResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_slaughterhouse_grpc_ProductIdList_descriptor;
+    internal_static_slaughterhouse_grpc_productsWithAnimalResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_slaughterhouse_grpc_ProductIdList_fieldAccessorTable;
+      internal_static_slaughterhouse_grpc_productsWithAnimalResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -45,16 +45,16 @@ public final class RecallServiceOuterClass {
     java.lang.String[] descriptorData = {
       "\n\023RecallService.proto\022\023slaughterhouse.gr" +
       "pc\"\026\n\010AnimalId\022\n\n\002id\030\001 \001(\005\"\027\n\tProductId\022" +
-      "\n\n\002id\030\001 \001(\005\"<\n\rAnimalsIdList\022+\n\004list\030\001 \003" +
-      "(\0132\035.slaughterhouse.grpc.AnimalId\"=\n\rPro" +
-      "ductIdList\022,\n\004list\030\001 \003(\0132\036.slaughterhous" +
-      "e.grpc.ProductId2\300\001\n\rRecallService\022W\n\022pr" +
-      "oductsWithAnimal\022\035.slaughterhouse.grpc.A" +
-      "nimalId\032\".slaughterhouse.grpc.ProductIdL" +
-      "ist\022V\n\020animalsInProduct\022\036.slaughterhouse" +
-      ".grpc.ProductId\032\".slaughterhouse.grpc.An" +
-      "imalsIdListB(\n$via.sdj3.grpcslaughterhou" +
-      "se.protobufP\001b\006proto3"
+      "\n\n\002id\030\001 \001(\005\")\n\030animalsInProductResponse\022" +
+      "\r\n\005trace\030\001 \001(\t\"+\n\032productsWithAnimalResp" +
+      "onse\022\r\n\005trace\030\001 \001(\t2\330\001\n\rRecallService\022d\n" +
+      "\022productsWithAnimal\022\035.slaughterhouse.grp" +
+      "c.AnimalId\032/.slaughterhouse.grpc.product" +
+      "sWithAnimalResponse\022a\n\020animalsInProduct\022" +
+      "\036.slaughterhouse.grpc.ProductId\032-.slaugh" +
+      "terhouse.grpc.animalsInProductResponseB(" +
+      "\n$via.sdj3.grpcslaughterhouse.protobufP\001" +
+      "b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -72,18 +72,18 @@ public final class RecallServiceOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_slaughterhouse_grpc_ProductId_descriptor,
         new java.lang.String[] { "Id", });
-    internal_static_slaughterhouse_grpc_AnimalsIdList_descriptor =
+    internal_static_slaughterhouse_grpc_animalsInProductResponse_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_slaughterhouse_grpc_AnimalsIdList_fieldAccessorTable = new
+    internal_static_slaughterhouse_grpc_animalsInProductResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_slaughterhouse_grpc_AnimalsIdList_descriptor,
-        new java.lang.String[] { "List", });
-    internal_static_slaughterhouse_grpc_ProductIdList_descriptor =
+        internal_static_slaughterhouse_grpc_animalsInProductResponse_descriptor,
+        new java.lang.String[] { "Trace", });
+    internal_static_slaughterhouse_grpc_productsWithAnimalResponse_descriptor =
       getDescriptor().getMessageTypes().get(3);
-    internal_static_slaughterhouse_grpc_ProductIdList_fieldAccessorTable = new
+    internal_static_slaughterhouse_grpc_productsWithAnimalResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_slaughterhouse_grpc_ProductIdList_descriptor,
-        new java.lang.String[] { "List", });
+        internal_static_slaughterhouse_grpc_productsWithAnimalResponse_descriptor,
+        new java.lang.String[] { "Trace", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -11,17 +11,19 @@ message ProductId {
   int32 id=1;
 }
 
-message AnimalsIdList{
-  repeated AnimalId list=1;
+message animalsInProductResponse
+{
+  string trace=1;
 }
 
-message ProductIdList{
-  repeated ProductId list=1;
+message productsWithAnimalResponse
+{
+  string trace=1;
 }
 
 
 service RecallService{
-  rpc productsWithAnimal(AnimalId) returns(ProductIdList);
-  rpc animalsInProduct(ProductId) returns (AnimalsIdList);
+  rpc productsWithAnimal(AnimalId) returns(productsWithAnimalResponse);
+  rpc animalsInProduct(ProductId) returns (animalsInProductResponse);
 }
 

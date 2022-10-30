@@ -11,24 +11,21 @@ import javax.persistence.IdClass;
 @IdClass(ProductTraceId.class)
 public class ProductTrace {
     // TODO: 30-10-2022 clean here and db
-    private int id;
     @Id
     private int productId;
-    private String type;
+
     @Id
     private int trayId;
     @Id
     private int partId;
+
+    private String type;
     private String partName;
 
     private int animalId;
     private double weight;
 
     public ProductTrace() {
-    }
-
-    public int getId() {
-        return id;
     }
 
     public int getProductId() {
@@ -61,15 +58,14 @@ public class ProductTrace {
 
     @Override
     public String toString() {
-        return "\nProductTrace{" +
-                "id=" + id +
-                ", productId=" + productId +
-                ", type='" + type  +
-                ", trayId=" + trayId +
-                ",\n partId=" + partId +
-                ", partName='" + partName +
-                ", animalId=" + animalId +
-                ", weight=" + weight +
-                '}';
+        return "\nProduct "+productId+" trace:"     + "\n"  +
+                "--Product ID:      " +productId    + "\n"  +
+                "--Tray ID:         " +trayId       + "\n"  +
+                "--Part ID:         " +partId       + "\n"  +
+                "--Animal ID:       " +animalId     + "\n"  +
+                "--Part name:       " +partName     + "\n"  +
+                "--Product name:    " +type         + "\n"  +
+                "--Part weight:     " +weight       + "\n"  ;
+
     }
 }
