@@ -10,36 +10,59 @@ CREATE TABLE IF NOT EXISTS part
     weight    float
 );
 
+
 CREATE TABLE IF NOT EXISTS tray
 (
     tray_id         int,
-    part_id         int,
-    part_name       char(32),
     weight_capacity float,
 
-    PRIMARY KEY (tray_id, part_id),
-    FOREIGN KEY (part_id) REFERENCES part (part_id)
+    PRIMARY KEY (tray_id)
 );
 
 CREATE TABLE IF NOT EXISTS product
 (
     product_id SERIAL PRIMARY KEY,
-    tray_id    int,
     type       char(50)
 );
 
-CREATE VIEW product_trace AS
-SELECT product_id,
-       type,
-       product.tray_id,
-       t.part_name,
-       t.part_id,
-       p.animal_id,
-       p.weight
+CREATE TABLE IF NOT EXISTS part_in_tray
+(
+    id SERIAL PRIMARY KEY ,
+    part_id int,
+    tray_id int,
 
-       FROM product
-INNER JOIN tray t ON product.tray_id = t.tray_id
-INNER JOIN part p ON p.part_id = t.part_id;
+    FOREIGN KEY (part_id)REFERENCES part(part_id),
+    FOREIGN KEY (tray_id)REFERENCES tray(tray_id)
+);
+
+CREATE TABLE IF NOT EXISTS tray_in_product
+(
+    id SERIAL PRIMARY KEY,
+    tray_id int,
+    product_id int,
+
+    FOREIGN KEY (tray_id) REFERENCES tray(tray_id),
+    FOREIGN KEY (product_id)REFERENCES product(product_id)
+);
+
+
+CREATE VIEW product_trace AS
+SELECT
+       product.product_id,
+       type,
+       part_in_tray.id,
+       tray.tray_id,
+       part.part_name,
+       part.part_id,
+       part.animal_id,
+       part.weight
+
+       FROM product, tray_in_product, part_in_tray, tray, part
+        WHERE product.product_id = tray_in_product.product_id
+        AND tray.tray_id=tray_in_product.tray_id
+        AND tray.tray_id=part_in_tray.tray_id
+        AND part.part_id=part_in_tray.part_id;
+
 
 
 INSERT INTO part (animal_id, part_name, weight)
@@ -53,26 +76,41 @@ VALUES (1, 'leg', 1.5),
        (3, 'ribeye', 1.5),
        (3, 'leg', 4.2);
 
-INSERT INTO tray (tray_id, part_id, part_name, weight_capacity)
-VALUES (0, 1, 'leg', 50),
-       (0, 9, 'leg', 50),
-       (1, 2, 'shank', 50),
-       (1, 6, 'shank', 50),
-       (2, 3, 'ribs', 60),
-       (2, 7, 'ribs', 60),
-       (3, 4, 'ribeye', 75),
-       (3, 8, 'ribeye', 75);
+INSERT INTO tray (tray_id, weight_capacity)
+VALUES (0, 50),
+       (1, 50),
+       (2, 60),
+       (3, 75);
 
-INSERT INTO product (tray_id, type)
-VALUES (0, 'tasty leg'),
-       (0, 'tzaziki leg dip'),
-       (1, 'slow roasted shank'),
-       (1, 'bbq marinated shank'),
-       (2, 'south carolina style ribs'),
-       (2, 'kansas city ribs'),
-       (3, '5A ribeye'),
-       (3, 'black angus ribeye');
+INSERT INTO part_in_tray(tray_id, part_id)
+VALUES (0,1),
+       (0,9),
+       (1,2),
+       (1,6),
+       (2,3),
+       (2,7),
+       (3,4),
+       (3,8);
 
+INSERT INTO product (type)
+VALUES ('tasty leg'),
+       ('tzaziki leg dip'),
+       ('slow roasted shank'),
+       ('bbq marinated shank'),
+       ('south carolina style ribs'),
+       ('kansas city ribs'),
+       ('5A ribeye'),
+       ('black angus ribeye');
+Insert Into tray_in_product(product_id, tray_id)
+VALUES (1,0),
+       (2,0),
+       (3,1),
+       (4,1),
+       (5,2),
+       (6,2),
+       (7,3),
+       (8,3);
+/*
 SELECT *
 FROM product_trace;
 
@@ -83,6 +121,6 @@ WHERE animal_id = 1;
 SELECT *
 FROM product_trace
 WHERE product_id = 1;
-
+*/
 
 

@@ -1,23 +1,20 @@
 package via.sdj3.grpcslaughterhouse.service;
 
 import io.grpc.stub.StreamObserver;
-import org.checkerframework.checker.units.qual.A;
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.beans.factory.annotation.Autowired;
-import via.sdj3.grpcslaughterhouse.application.SlaughterhouseApplication;
 import via.sdj3.grpcslaughterhouse.model.Part;
 import via.sdj3.grpcslaughterhouse.model.Product;
-import via.sdj3.grpcslaughterhouse.model.Product_trace;
+import via.sdj3.grpcslaughterhouse.model.ProductTrace;
 import via.sdj3.grpcslaughterhouse.model.Tray;
 import via.sdj3.grpcslaughterhouse.protobuf.*;
 import via.sdj3.grpcslaughterhouse.repository.PartRepository;
 import via.sdj3.grpcslaughterhouse.repository.ProductRepository;
-import via.sdj3.grpcslaughterhouse.repository.ProductTraceRepository;
+import via.sdj3.grpcslaughterhouse.repository.ProductTraceViewRepository;
 import via.sdj3.grpcslaughterhouse.repository.TrayRepository;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @GRpcService
@@ -67,18 +64,27 @@ public class RecallImpl extends RecallServiceGrpc.RecallServiceImplBase
     @Autowired
     private ProductRepository productRepo;
     @Autowired
-    private ProductTraceRepository productTraceRepo;
+    private ProductTraceViewRepository productTraceViewRepo;
 
     public ArrayList<Integer> getAnimalsInProduct(int productId)
     {
         //System.out.println(productTraceRepo.findAll());
-        // TODO: 10/27/2022 The trace repo is working.
-        Iterable<Product_trace> allTraces = productTraceRepo.findAll();
-        ArrayList<Product_trace> allFoundTraces = new ArrayList<>();
+        // TODO: 10/27/2022 The trace repo is working!!!!!
+        // TODO: 30-10-2022 Clean the code, Clean the toString in ProductTrace
+        // TODO: 30-10-2022 Do the getProducts method
+        // TODO: 30-10-2022 Delete the 'id' variable from db and ProductTrace
+        // TODO: 30-10-2022 Maybe change the proto to display the string of trace instead
+        //  of the ones that we have
+        List<ProductTrace> testTrace = productTraceViewRepo.findProductTracesByProductId(productId);
+        System.out.println(testTrace);
+        return null;
+        /*
+        Iterable<ProductTrace> allTraces = productTraceViewRepo.findAll();
+        ArrayList<ProductTrace> allFoundTraces = new ArrayList<>();
         allTraces.forEach(trace ->{
-            if(productId==trace.getProduct_id())
+            if(productId==trace.getProductId())
             {
-                System.out.println(trace.getProduct_id());
+                System.out.println(trace.getProductId());
                 allFoundTraces.add(trace);
             }
         });
@@ -135,6 +141,7 @@ public class RecallImpl extends RecallServiceGrpc.RecallServiceImplBase
         return animalsIds;
 
          */
+
     }
 
     public ArrayList<Product> getProductsWithAnimal(int animalId)
@@ -143,13 +150,13 @@ public class RecallImpl extends RecallServiceGrpc.RecallServiceImplBase
         ArrayList<Integer> allFoundPartsIds = new ArrayList<>();
         allParts.forEach(part ->
         {
-            if (animalId == part.getAnimal_id()) allFoundPartsIds.add(part.getPart_id());
+            if (animalId == part.getAnimalId()) allFoundPartsIds.add(part.getPartId());
         });
         Iterable<Tray> allFoundTrays = trayRepo.findAllById(allFoundPartsIds);
         ArrayList<Integer> allFoundTraysIds = new ArrayList<>();
         allFoundTrays.forEach(tray ->
         {
-            allFoundTraysIds.add(tray.getTray_id());
+            allFoundTraysIds.add(tray.getTrayId());
         });
         Iterable<Product> allFoundProducts = productRepo.findAllById(allFoundTraysIds);
         //Todo problem might be here, if doesn't work use 'for each' on Iterable.
