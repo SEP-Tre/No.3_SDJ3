@@ -7,13 +7,15 @@ CREATE TABLE IF NOT EXISTS animal
 (
     animal_id   SERIAL PRIMARY KEY,
     weight      float,
-    animal_type varchar
+    animal_type varchar,
+    is_converted bool
 );
 CREATE TABLE IF NOT EXISTS part
 (
     part_id   SERIAL PRIMARY KEY,
     part_name char(40),
     weight    float,
+    is_used      bool,
     animal_id int REFERENCES animal (animal_id)
 );
 
@@ -22,7 +24,8 @@ CREATE TABLE IF NOT EXISTS tray
 (
     tray_id         SERIAL PRIMARY KEY,
     weight_capacity float,
-    part_name       char(40)
+    part_name       char(40),
+    is_used          bool
 );
 
 CREATE TABLE IF NOT EXISTS product
@@ -31,7 +34,7 @@ CREATE TABLE IF NOT EXISTS product
     product_type char(50)
 );
 
-/*
+
 CREATE TABLE IF NOT EXISTS part_in_tray
 (
     id SERIAL PRIMARY KEY ,
@@ -52,6 +55,7 @@ CREATE TABLE IF NOT EXISTS tray_in_product
     FOREIGN KEY (product_id)REFERENCES product(product_id)
 );
 
+/*
 
 CREATE VIEW product_trace AS
 SELECT

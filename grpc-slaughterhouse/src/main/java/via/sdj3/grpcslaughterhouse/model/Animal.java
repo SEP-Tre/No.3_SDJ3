@@ -11,8 +11,19 @@ public class Animal
     private float weight;
     private String animal_type;
 
+    private boolean isConverted;
     public Animal()
     {
+    }
+
+    public boolean isConverted()
+    {
+        return isConverted;
+    }
+
+    public void setConverted(boolean converted)
+    {
+        isConverted = converted;
     }
 
     public int getAnimal_id()

@@ -14,8 +14,18 @@ public class Tray {
     private List<Part> parts;
     private int weightCapacity;
     private String partName;
-
+    private boolean isUsed;
     public Tray() {
+    }
+
+    public boolean isUsed()
+    {
+        return isUsed;
+    }
+
+    public void setUsed(boolean used)
+    {
+        isUsed = used;
     }
 
     public List<Part> getParts()

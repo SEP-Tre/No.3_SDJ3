@@ -17,6 +17,7 @@ public class Part
     private String partName;
     private float weight;
 
+    private boolean isUsed;
     public Part()
     {
     }
@@ -24,9 +25,20 @@ public class Part
     public Part(Animal animal, String partName, float weight)
     {
         this.partId = 0;
+        this.isUsed=false;
         this.animal = animal;
         this.partName = partName;
         this.weight = weight;
+    }
+
+    public boolean isUsed()
+    {
+        return isUsed;
+    }
+
+    public void setUsed(boolean used)
+    {
+        isUsed = used;
     }
 
     public int getPartId()

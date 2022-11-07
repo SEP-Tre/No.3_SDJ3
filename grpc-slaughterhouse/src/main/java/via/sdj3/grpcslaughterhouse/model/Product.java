@@ -14,9 +14,19 @@ public class Product
     @OneToMany
     private List<Tray> trays;
     private String productType;
-
+private boolean isUsed;
     public Product()
     {
+    }
+
+    public boolean isUsed()
+    {
+        return isUsed;
+    }
+
+    public void setUsed(boolean used)
+    {
+        isUsed = used;
     }
 
     public List<Tray> getTrays()
