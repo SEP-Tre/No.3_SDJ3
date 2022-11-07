@@ -1,30 +1,37 @@
-DROP SCHEMA IF EXISTS slaughterhouse CASCADE ;
+DROP SCHEMA IF EXISTS slaughterhouse CASCADE;
 CREATE SCHEMA IF NOT EXISTS slaughterhouse;
 SET SCHEMA 'slaughterhouse';
 
+
+CREATE TABLE IF NOT EXISTS animal
+(
+    animal_id   SERIAL PRIMARY KEY,
+    weight      float,
+    animal_type varchar
+);
 CREATE TABLE IF NOT EXISTS part
 (
     part_id   SERIAL PRIMARY KEY,
-    animal_id int,
     part_name char(40),
-    weight    float
+    weight    float,
+    animal_id int REFERENCES animal (animal_id)
 );
 
 
 CREATE TABLE IF NOT EXISTS tray
 (
-    tray_id         int,
+    tray_id         SERIAL PRIMARY KEY,
     weight_capacity float,
-
-    PRIMARY KEY (tray_id)
+    part_name       char(40)
 );
 
 CREATE TABLE IF NOT EXISTS product
 (
-    product_id SERIAL PRIMARY KEY,
-    type       char(50)
+    product_id   SERIAL PRIMARY KEY,
+    product_type char(50)
 );
 
+/*
 CREATE TABLE IF NOT EXISTS part_in_tray
 (
     id SERIAL PRIMARY KEY ,
@@ -121,5 +128,5 @@ SELECT *
 FROM product_trace
 WHERE product_id = 1;
 */
-
+*/
 

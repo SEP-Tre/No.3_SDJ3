@@ -1,29 +1,55 @@
-syntax="proto3";
-option java_multiple_files=true;
-option java_package="via.sdj3.grpcslaughterhouse.protobuf";
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "via.sdj3.grpcslaughterhouse.protobuf";
 package slaughterhouse.grpc;
 
-message AnimalId{
-  int32 id=1;
-}
-
-message ProductId {
-  int32 id=1;
-}
-
-message animalsInProductResponse
+service SlaughterhouseService
 {
-  string trace=1;
+  rpc registerAnimal(AnimalMsg) returns (AnimalMsg);
+  rpc CutAnimal(AnimalMsg) returns (PartList);
+  rpc PackIntoTray(PartList) returns (TrayList);
+  rpc PackForDistribution(TrayList) returns (ProductList);
+}
+message AnimalMsg{
+  float weight = 1;
+  string type = 2;
+  int32 id = 3;
 }
 
-message productsWithAnimalResponse
+message PartMsg
 {
-  string trace=1;
+  int32 partId = 1;
+  string partName = 2;
+  float weight = 3;
+  AnimalMsg animal = 4;
 }
 
+message PartList
+{
+  repeated PartMsg parts = 1;
+}
 
-service RecallService{
-  rpc productsWithAnimal(AnimalId) returns(productsWithAnimalResponse);
-  rpc animalsInProduct(ProductId) returns (animalsInProductResponse);
+message TrayMsg
+{
+  int32 trayId = 1;
+  float weightCapacity = 2;
+  string partName = 3;
+  PartList parts = 4;
+}
+message TrayList
+{
+  repeated TrayMsg trays = 1;
+}
+
+message ProductMsg
+{
+  int32 productId = 1;
+  string productType = 2;
+  TrayList trays = 3;
+}
+
+message ProductList
+{
+  repeated ProductMsg products = 1;
 }
 
