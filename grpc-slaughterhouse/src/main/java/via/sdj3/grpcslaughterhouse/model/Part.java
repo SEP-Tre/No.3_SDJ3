@@ -8,17 +8,25 @@ import java.util.List;
 public class Part
 {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int partId;
 
-    @JoinColumn(name="animal_id", referencedColumnName = "animal_id")
-    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="animal_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Animal animal;
     private String partName;
     private float weight;
 
     public Part()
     {
+    }
+
+    public Part(Animal animal, String partName, float weight)
+    {
+        this.partId = 0;
+        this.animal = animal;
+        this.partName = partName;
+        this.weight = weight;
     }
 
     public int getPartId()

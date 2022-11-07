@@ -7,7 +7,7 @@ import java.util.List;
 public class Product
 {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productId;
 
     @JoinTable

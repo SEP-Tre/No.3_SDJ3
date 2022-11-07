@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 public class Tray {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int trayId;
 
     @JoinTable

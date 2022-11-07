@@ -9,6 +9,7 @@ service SlaughterhouseService
   rpc CutAnimal(AnimalMsg) returns (PartList);
   rpc PackIntoTray(PartList) returns (TrayList);
   rpc PackForDistribution(TrayList) returns (ProductList);
+  rpc PackHalfAnimal(HalfAnimalMsg) returns (ProductMsg);
 }
 message AnimalMsg{
   float weight = 1;
@@ -51,5 +52,10 @@ message ProductMsg
 message ProductList
 {
   repeated ProductMsg products = 1;
+}
+
+message HalfAnimalMsg
+{
+  string animalType=1;
 }
 

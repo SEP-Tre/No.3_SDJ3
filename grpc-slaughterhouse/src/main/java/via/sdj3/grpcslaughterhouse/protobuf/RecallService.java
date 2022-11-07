@@ -49,6 +49,11 @@ public final class RecallService {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_slaughterhouse_grpc_ProductList_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_slaughterhouse_grpc_HalfAnimalMsg_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_slaughterhouse_grpc_HalfAnimalMsg_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -73,17 +78,20 @@ public final class RecallService {
       "ype\030\002 \001(\t\022,\n\005trays\030\003 \001(\0132\035.slaughterhous" +
       "e.grpc.TrayList\"@\n\013ProductList\0221\n\010produc" +
       "ts\030\001 \003(\0132\037.slaughterhouse.grpc.ProductMs" +
-      "g2\333\002\n\025SlaughterhouseService\022P\n\016registerA" +
-      "nimal\022\036.slaughterhouse.grpc.AnimalMsg\032\036." +
-      "slaughterhouse.grpc.AnimalMsg\022J\n\tCutAnim" +
-      "al\022\036.slaughterhouse.grpc.AnimalMsg\032\035.sla" +
-      "ughterhouse.grpc.PartList\022L\n\014PackIntoTra" +
-      "y\022\035.slaughterhouse.grpc.PartList\032\035.slaug" +
-      "hterhouse.grpc.TrayList\022V\n\023PackForDistri" +
-      "bution\022\035.slaughterhouse.grpc.TrayList\032 ." +
-      "slaughterhouse.grpc.ProductListB(\n$via.s" +
-      "dj3.grpcslaughterhouse.protobufP\001b\006proto" +
-      "3"
+      "g\"#\n\rHalfAnimalMsg\022\022\n\nanimalType\030\001 \001(\t2\262" +
+      "\003\n\025SlaughterhouseService\022P\n\016registerAnim" +
+      "al\022\036.slaughterhouse.grpc.AnimalMsg\032\036.sla" +
+      "ughterhouse.grpc.AnimalMsg\022J\n\tCutAnimal\022" +
+      "\036.slaughterhouse.grpc.AnimalMsg\032\035.slaugh" +
+      "terhouse.grpc.PartList\022L\n\014PackIntoTray\022\035" +
+      ".slaughterhouse.grpc.PartList\032\035.slaughte" +
+      "rhouse.grpc.TrayList\022V\n\023PackForDistribut" +
+      "ion\022\035.slaughterhouse.grpc.TrayList\032 .sla" +
+      "ughterhouse.grpc.ProductList\022U\n\016PackHalf" +
+      "Animal\022\".slaughterhouse.grpc.HalfAnimalM" +
+      "sg\032\037.slaughterhouse.grpc.ProductMsgB(\n$v" +
+      "ia.sdj3.grpcslaughterhouse.protobufP\001b\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -131,6 +139,12 @@ public final class RecallService {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_slaughterhouse_grpc_ProductList_descriptor,
         new java.lang.String[] { "Products", });
+    internal_static_slaughterhouse_grpc_HalfAnimalMsg_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_slaughterhouse_grpc_HalfAnimalMsg_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_slaughterhouse_grpc_HalfAnimalMsg_descriptor,
+        new java.lang.String[] { "AnimalType", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
