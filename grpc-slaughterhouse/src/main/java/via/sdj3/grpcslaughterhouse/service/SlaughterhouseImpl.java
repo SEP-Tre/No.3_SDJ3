@@ -23,9 +23,7 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
     @Override
     public void registerAnimal(AnimalMsg request, StreamObserver<AnimalMsg> responseObserver)
     {
-        Animal animalToSave = new Animal();
-        animalToSave.setWeight(request.getWeight());
-        animalToSave.setAnimal_type(request.getType());
+        Animal animalToSave = getAnimal(request);
         Animal savedAnimal = animalRepository.save(animalToSave);
         AnimalMsg savedAnimalMsg = AnimalMsg.newBuilder()
                 .setId(savedAnimal.getAnimal_id())
@@ -36,13 +34,12 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
         responseObserver.onCompleted();
     }
 
+
+
     @Override
     public void cutAnimal(AnimalMsg request, StreamObserver<PartList> responseObserver)
     {
-        Animal animalToSave = new Animal();
-        animalToSave.setAnimal_type(request.getType());
-        animalToSave.setWeight(request.getWeight());
-        animalToSave.setAnimal_id(request.getId());
+        Animal animalToSave = getAnimal(request);
         PartList partList = convertAnimalIntoParts(animalToSave);
         responseObserver.onNext(partList);
         responseObserver.onCompleted();
@@ -96,13 +93,22 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
             PartMsg partMsg = PartMsg.newBuilder()
                     .setPartId(part.getPartId())
                     .setAnimal(AnimalMsg.newBuilder()
-                                .setId(animal.getAnimal_id())
-                                .setWeight(animal.getWeight()).build())
+                            .setId(animal.getAnimal_id())
+                            .setWeight(animal.getWeight()).build())
                     .setPartName(part.getPartName())
                     .setWeight(part.getWeight()).build();
             partMsgs.add(partMsg);
         });
         PartList partList = PartList.newBuilder().addAllParts(partMsgs).build();
         return partList;
+    }
+
+    private static Animal getAnimal(AnimalMsg request)
+    {
+        Animal animalToSave = new Animal();
+        animalToSave.setWeight(request.getWeight());
+        animalToSave.setAnimal_type(request.getType());
+        animalToSave.setAnimal_id(request.getId());
+        return animalToSave;
     }
 }
