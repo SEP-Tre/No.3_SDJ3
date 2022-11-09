@@ -12,7 +12,7 @@ public class Part
     private int partId;
 
     @JoinColumn(name="animal_id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private Animal animal;
     private String partName;
     private float weight;

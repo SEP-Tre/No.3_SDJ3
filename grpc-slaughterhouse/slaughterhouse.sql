@@ -5,9 +5,9 @@ SET SCHEMA 'slaughterhouse';
 
 CREATE TABLE IF NOT EXISTS animal
 (
-    animal_id   SERIAL PRIMARY KEY,
-    weight      float,
-    animal_type varchar,
+    animal_id    SERIAL PRIMARY KEY,
+    weight       float,
+    animal_type  varchar,
     is_converted bool
 );
 CREATE TABLE IF NOT EXISTS part
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS part
     part_id   SERIAL PRIMARY KEY,
     part_name char(40),
     weight    float,
-    is_used      bool,
+    is_used   bool,
     animal_id int REFERENCES animal (animal_id)
 );
 
@@ -25,34 +25,35 @@ CREATE TABLE IF NOT EXISTS tray
     tray_id         SERIAL PRIMARY KEY,
     weight_capacity float,
     part_name       char(40),
-    is_used          bool
+    is_used         bool
 );
 
 CREATE TABLE IF NOT EXISTS product
 (
     product_id   SERIAL PRIMARY KEY,
-    product_type char(50)
+    product_type char(50),
+    is_used      bool
 );
 
 
 CREATE TABLE IF NOT EXISTS part_in_tray
 (
-    id SERIAL PRIMARY KEY ,
+    id      SERIAL PRIMARY KEY,
     part_id int,
     tray_id int,
 
-    FOREIGN KEY (part_id)REFERENCES part(part_id),
-    FOREIGN KEY (tray_id)REFERENCES tray(tray_id)
+    FOREIGN KEY (part_id) REFERENCES part (part_id),
+    FOREIGN KEY (tray_id) REFERENCES tray (tray_id)
 );
 
 CREATE TABLE IF NOT EXISTS tray_in_product
 (
-    id SERIAL PRIMARY KEY,
-    tray_id int,
+    id         SERIAL PRIMARY KEY,
+    tray_id    int,
     product_id int,
 
-    FOREIGN KEY (tray_id) REFERENCES tray(tray_id),
-    FOREIGN KEY (product_id)REFERENCES product(product_id)
+    FOREIGN KEY (tray_id) REFERENCES tray (tray_id),
+    FOREIGN KEY (product_id) REFERENCES product (product_id)
 );
 
 /*
