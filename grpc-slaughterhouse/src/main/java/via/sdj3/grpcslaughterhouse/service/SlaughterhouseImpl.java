@@ -7,6 +7,7 @@ import via.sdj3.grpcslaughterhouse.model.Animal;
 import via.sdj3.grpcslaughterhouse.model.Part;
 import via.sdj3.grpcslaughterhouse.model.Product;
 import via.sdj3.grpcslaughterhouse.model.Tray;
+import via.sdj3.grpcslaughterhouse.model.Tray;
 import via.sdj3.grpcslaughterhouse.protobuf.*;
 import via.sdj3.grpcslaughterhouse.repository.AnimalRepository;
 import via.sdj3.grpcslaughterhouse.repository.PartRepository;
@@ -14,6 +15,8 @@ import via.sdj3.grpcslaughterhouse.repository.ProductRepository;
 import via.sdj3.grpcslaughterhouse.repository.TrayRepository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 
 @GRpcService
@@ -41,6 +44,7 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
     }
 
 
+
     @Override
     public void cutAnimal(AnimalMsg request, StreamObserver<PartList> responseObserver) {
         Animal animalToSave = getAnimal(request);
@@ -50,8 +54,70 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
     }
 
     @Override
-    public void packIntoTray(PartList request, StreamObserver<TrayList> responseObserver) {
-        super.packIntoTray(request, responseObserver);
+    public void packIntoTray(PartList request, StreamObserver<TrayList> responseObserver)
+    {
+        //Getting all the types which are in the PartList
+        //Calculating the total weight for each type
+        ArrayList<String> types = new ArrayList<>();
+        HashMap<String, Float> allWeightsForType = new HashMap<>();
+        HashMap<String, ArrayList<PartMsg>> allPartsByType = new HashMap<>();
+        request.getPartsList().forEach(partMsg ->
+        {
+            String partName = partMsg.getPartName();
+            Float weight = partMsg.getWeight();
+            if (!types.contains(partName))
+            {
+                types.add(partName);
+            }
+            if(!allWeightsForType.containsKey(partName))
+            {
+                allWeightsForType.put(partName, weight);
+                ArrayList<PartMsg> newPartsMsgs = new ArrayList<>();
+                newPartsMsgs.add(partMsg);
+                allPartsByType.put(partName, newPartsMsgs);
+
+            }
+            else
+            {
+                Float oldWeight = allWeightsForType.get(partName);
+                Float newWeight = oldWeight + weight;
+                allWeightsForType.replace(partName,newWeight);
+
+                ArrayList<PartMsg> newPartMsgs = allPartsByType.get(partName);
+                newPartMsgs.add(partMsg);
+                allPartsByType.replace(partName,newPartMsgs);
+            }
+        });
+        System.out.println(types);
+        System.out.println(allWeightsForType);
+        System.out.println(allPartsByType);
+
+        //Creating the trays from each
+        ArrayList<Tray> availableTrays = new ArrayList<>();
+        ArrayList<TrayMsg> trayMsgs = new ArrayList<>();
+        types.forEach(type ->
+        {
+            Tray tray = new Tray();
+            tray.setWeightCapacity(allWeightsForType.get(type));
+            tray.setPartName(type);
+            ArrayList<Part> parts = new ArrayList<>();
+            ArrayList<PartMsg> partMsgs = new ArrayList<>();
+            //Creating the ArrayList<TrayMsg> in parallel
+            allPartsByType.get(type).forEach(partMsg ->
+            {
+                AnimalMsg animalMsg = partMsg.getAnimal();
+                Animal animal = new Animal(animalMsg.getId(), animalMsg.getWeight(), animalMsg.getType(), true);
+                Part part = new Part(animal, type, partMsg.getWeight());
+                parts.add(part);
+                partMsgs.add(partMsg);
+            });
+            tray.setParts(parts);
+            availableTrays.add(tray);
+            //WRONG \/
+            TrayMsg trayMsg = TrayMsg.newBuilder()
+                    .addRepeatedField(TrayMsg.getDescriptor().findFieldByName("parts"),partMsgs).build();
+        });
+
     }
 
     @Override

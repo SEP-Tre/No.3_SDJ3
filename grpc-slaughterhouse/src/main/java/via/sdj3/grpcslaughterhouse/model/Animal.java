@@ -16,6 +16,14 @@ public class Animal
     {
     }
 
+    public Animal(int animal_id, float weight, String animal_type, boolean isConverted)
+    {
+        this.animal_id = animal_id;
+        this.weight = weight;
+        this.animal_type = animal_type;
+        this.isConverted = isConverted;
+    }
+
     public boolean isConverted()
     {
         return isConverted;

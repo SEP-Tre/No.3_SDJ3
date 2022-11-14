@@ -20,6 +20,7 @@ public class Part
     private boolean isUsed;
     public Part()
     {
+        isUsed=false;
     }
 
     public Part(Animal animal, String partName, float weight)
