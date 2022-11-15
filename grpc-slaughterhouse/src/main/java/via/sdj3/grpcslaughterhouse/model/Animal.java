@@ -63,4 +63,14 @@ public class Animal
     {
         this.animal_type = animal_type;
     }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "animal_id=" + animal_id +
+                ", weight=" + weight +
+                ", animal_type='" + animal_type + '\'' +
+                ", isConverted=" + isConverted +
+                '}';
+    }
 }

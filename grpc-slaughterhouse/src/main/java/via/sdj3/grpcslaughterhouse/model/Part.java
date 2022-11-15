@@ -1,7 +1,6 @@
 package via.sdj3.grpcslaughterhouse.model;
 
 import javax.persistence.*;
-import java.util.List;
 // TODO: 07-11-2022 Error might be here. Wrong import. 
 
 @Entity
@@ -12,34 +11,43 @@ public class Part
     private int partId;
 
     @JoinColumn(name="animal_id")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     private Animal animal;
     private String partName;
     private float weight;
-
-    private boolean isUsed;
+    // Needed to differentiate exactly what used meant. There are two different contexts for it
+    private boolean isInTray;
+    private boolean isInProduct;
     public Part()
     {
-        isUsed=false;
+        isInTray = false;
+        isInProduct = false;
     }
 
     public Part(Animal animal, String partName, float weight)
     {
         this.partId = 0;
-        this.isUsed=false;
+        this.isInTray = false;
+        this.isInProduct = false;
         this.animal = animal;
         this.partName = partName;
         this.weight = weight;
     }
 
-    public boolean isUsed()
-    {
-        return isUsed;
+    public boolean isInTray() {
+        return isInTray;
     }
 
-    public void setUsed(boolean used)
-    {
-        isUsed = used;
+    public void setInTray(boolean inTray) {
+        isInTray = inTray;
+    }
+
+    public boolean isInProduct() {
+        return isInProduct;
+    }
+
+    public void setInProduct(boolean inProduct) {
+        isInProduct = inProduct;
     }
 
     public int getPartId()
@@ -80,5 +88,17 @@ public class Part
     public void setWeight(float weight)
     {
         this.weight = weight;
+    }
+
+    @Override
+    public String toString() {
+        return "Part{" +
+                "partId=" + partId +
+                ", animal=" + animal +
+                ", partName='" + partName + '\'' +
+                ", weight=" + weight +
+                ", isInTray=" + isInTray +
+                ", isInProduct=" + isInProduct +
+                '}';
     }
 }

@@ -9,8 +9,12 @@ public class Tray {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int trayId;
 
-    @JoinTable
-    @OneToMany
+    @OneToMany (fetch = FetchType.EAGER, cascade = { CascadeType.MERGE})
+    @JoinTable(
+           name = "part_in_tray",
+           joinColumns = {@JoinColumn(name = "tray_id")},
+            inverseJoinColumns = {@JoinColumn(name = "part_id")}
+    )
     private List<Part> parts;
     private float weightCapacity;
     private String partName;
@@ -80,5 +84,16 @@ public class Tray {
     public void setPartName(String partName)
     {
         this.partName = partName;
+    }
+
+    @Override
+    public String toString() {
+        return "Tray{" +
+                "trayId=" + trayId +
+                ", parts=" + parts +
+                ", weightCapacity=" + weightCapacity +
+                ", partName='" + partName + '\'' +
+                ", isUsed=" + isUsed +
+                '}';
     }
 }

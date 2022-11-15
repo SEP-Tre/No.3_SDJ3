@@ -65,7 +65,17 @@ private static final long serialVersionUID = 0L;
             weight_ = input.readFloat();
             break;
           }
-          case 34: {
+          case 32: {
+
+            isInTray_ = input.readBool();
+            break;
+          }
+          case 40: {
+
+            isInProduct_ = input.readBool();
+            break;
+          }
+          case 50: {
             via.sdj3.grpcslaughterhouse.protobuf.AnimalMsg.Builder subBuilder = null;
             if (animal_ != null) {
               subBuilder = animal_.toBuilder();
@@ -172,10 +182,32 @@ private static final long serialVersionUID = 0L;
     return weight_;
   }
 
-  public static final int ANIMAL_FIELD_NUMBER = 4;
+  public static final int ISINTRAY_FIELD_NUMBER = 4;
+  private boolean isInTray_;
+  /**
+   * <code>bool isInTray = 4;</code>
+   * @return The isInTray.
+   */
+  @java.lang.Override
+  public boolean getIsInTray() {
+    return isInTray_;
+  }
+
+  public static final int ISINPRODUCT_FIELD_NUMBER = 5;
+  private boolean isInProduct_;
+  /**
+   * <code>bool isInProduct = 5;</code>
+   * @return The isInProduct.
+   */
+  @java.lang.Override
+  public boolean getIsInProduct() {
+    return isInProduct_;
+  }
+
+  public static final int ANIMAL_FIELD_NUMBER = 6;
   private via.sdj3.grpcslaughterhouse.protobuf.AnimalMsg animal_;
   /**
-   * <code>.slaughterhouse.grpc.AnimalMsg animal = 4;</code>
+   * <code>.slaughterhouse.grpc.AnimalMsg animal = 6;</code>
    * @return Whether the animal field is set.
    */
   @java.lang.Override
@@ -183,7 +215,7 @@ private static final long serialVersionUID = 0L;
     return animal_ != null;
   }
   /**
-   * <code>.slaughterhouse.grpc.AnimalMsg animal = 4;</code>
+   * <code>.slaughterhouse.grpc.AnimalMsg animal = 6;</code>
    * @return The animal.
    */
   @java.lang.Override
@@ -191,7 +223,7 @@ private static final long serialVersionUID = 0L;
     return animal_ == null ? via.sdj3.grpcslaughterhouse.protobuf.AnimalMsg.getDefaultInstance() : animal_;
   }
   /**
-   * <code>.slaughterhouse.grpc.AnimalMsg animal = 4;</code>
+   * <code>.slaughterhouse.grpc.AnimalMsg animal = 6;</code>
    */
   @java.lang.Override
   public via.sdj3.grpcslaughterhouse.protobuf.AnimalMsgOrBuilder getAnimalOrBuilder() {
@@ -221,8 +253,14 @@ private static final long serialVersionUID = 0L;
     if (java.lang.Float.floatToRawIntBits(weight_) != 0) {
       output.writeFloat(3, weight_);
     }
+    if (isInTray_ != false) {
+      output.writeBool(4, isInTray_);
+    }
+    if (isInProduct_ != false) {
+      output.writeBool(5, isInProduct_);
+    }
     if (animal_ != null) {
-      output.writeMessage(4, getAnimal());
+      output.writeMessage(6, getAnimal());
     }
     unknownFields.writeTo(output);
   }
@@ -244,9 +282,17 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeFloatSize(3, weight_);
     }
+    if (isInTray_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(4, isInTray_);
+    }
+    if (isInProduct_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(5, isInProduct_);
+    }
     if (animal_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(4, getAnimal());
+        .computeMessageSize(6, getAnimal());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -270,6 +316,10 @@ private static final long serialVersionUID = 0L;
     if (java.lang.Float.floatToIntBits(getWeight())
         != java.lang.Float.floatToIntBits(
             other.getWeight())) return false;
+    if (getIsInTray()
+        != other.getIsInTray()) return false;
+    if (getIsInProduct()
+        != other.getIsInProduct()) return false;
     if (hasAnimal() != other.hasAnimal()) return false;
     if (hasAnimal()) {
       if (!getAnimal()
@@ -293,6 +343,12 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + WEIGHT_FIELD_NUMBER;
     hash = (53 * hash) + java.lang.Float.floatToIntBits(
         getWeight());
+    hash = (37 * hash) + ISINTRAY_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getIsInTray());
+    hash = (37 * hash) + ISINPRODUCT_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getIsInProduct());
     if (hasAnimal()) {
       hash = (37 * hash) + ANIMAL_FIELD_NUMBER;
       hash = (53 * hash) + getAnimal().hashCode();
@@ -436,6 +492,10 @@ private static final long serialVersionUID = 0L;
 
       weight_ = 0F;
 
+      isInTray_ = false;
+
+      isInProduct_ = false;
+
       if (animalBuilder_ == null) {
         animal_ = null;
       } else {
@@ -471,6 +531,8 @@ private static final long serialVersionUID = 0L;
       result.partId_ = partId_;
       result.partName_ = partName_;
       result.weight_ = weight_;
+      result.isInTray_ = isInTray_;
+      result.isInProduct_ = isInProduct_;
       if (animalBuilder_ == null) {
         result.animal_ = animal_;
       } else {
@@ -533,6 +595,12 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getWeight() != 0F) {
         setWeight(other.getWeight());
+      }
+      if (other.getIsInTray() != false) {
+        setIsInTray(other.getIsInTray());
+      }
+      if (other.getIsInProduct() != false) {
+        setIsInProduct(other.getIsInProduct());
       }
       if (other.hasAnimal()) {
         mergeAnimal(other.getAnimal());
@@ -704,18 +772,80 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private boolean isInTray_ ;
+    /**
+     * <code>bool isInTray = 4;</code>
+     * @return The isInTray.
+     */
+    @java.lang.Override
+    public boolean getIsInTray() {
+      return isInTray_;
+    }
+    /**
+     * <code>bool isInTray = 4;</code>
+     * @param value The isInTray to set.
+     * @return This builder for chaining.
+     */
+    public Builder setIsInTray(boolean value) {
+      
+      isInTray_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool isInTray = 4;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearIsInTray() {
+      
+      isInTray_ = false;
+      onChanged();
+      return this;
+    }
+
+    private boolean isInProduct_ ;
+    /**
+     * <code>bool isInProduct = 5;</code>
+     * @return The isInProduct.
+     */
+    @java.lang.Override
+    public boolean getIsInProduct() {
+      return isInProduct_;
+    }
+    /**
+     * <code>bool isInProduct = 5;</code>
+     * @param value The isInProduct to set.
+     * @return This builder for chaining.
+     */
+    public Builder setIsInProduct(boolean value) {
+      
+      isInProduct_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool isInProduct = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearIsInProduct() {
+      
+      isInProduct_ = false;
+      onChanged();
+      return this;
+    }
+
     private via.sdj3.grpcslaughterhouse.protobuf.AnimalMsg animal_;
     private com.google.protobuf.SingleFieldBuilderV3<
         via.sdj3.grpcslaughterhouse.protobuf.AnimalMsg, via.sdj3.grpcslaughterhouse.protobuf.AnimalMsg.Builder, via.sdj3.grpcslaughterhouse.protobuf.AnimalMsgOrBuilder> animalBuilder_;
     /**
-     * <code>.slaughterhouse.grpc.AnimalMsg animal = 4;</code>
+     * <code>.slaughterhouse.grpc.AnimalMsg animal = 6;</code>
      * @return Whether the animal field is set.
      */
     public boolean hasAnimal() {
       return animalBuilder_ != null || animal_ != null;
     }
     /**
-     * <code>.slaughterhouse.grpc.AnimalMsg animal = 4;</code>
+     * <code>.slaughterhouse.grpc.AnimalMsg animal = 6;</code>
      * @return The animal.
      */
     public via.sdj3.grpcslaughterhouse.protobuf.AnimalMsg getAnimal() {
@@ -726,7 +856,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.slaughterhouse.grpc.AnimalMsg animal = 4;</code>
+     * <code>.slaughterhouse.grpc.AnimalMsg animal = 6;</code>
      */
     public Builder setAnimal(via.sdj3.grpcslaughterhouse.protobuf.AnimalMsg value) {
       if (animalBuilder_ == null) {
@@ -742,7 +872,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.slaughterhouse.grpc.AnimalMsg animal = 4;</code>
+     * <code>.slaughterhouse.grpc.AnimalMsg animal = 6;</code>
      */
     public Builder setAnimal(
         via.sdj3.grpcslaughterhouse.protobuf.AnimalMsg.Builder builderForValue) {
@@ -756,7 +886,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.slaughterhouse.grpc.AnimalMsg animal = 4;</code>
+     * <code>.slaughterhouse.grpc.AnimalMsg animal = 6;</code>
      */
     public Builder mergeAnimal(via.sdj3.grpcslaughterhouse.protobuf.AnimalMsg value) {
       if (animalBuilder_ == null) {
@@ -774,7 +904,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.slaughterhouse.grpc.AnimalMsg animal = 4;</code>
+     * <code>.slaughterhouse.grpc.AnimalMsg animal = 6;</code>
      */
     public Builder clearAnimal() {
       if (animalBuilder_ == null) {
@@ -788,7 +918,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.slaughterhouse.grpc.AnimalMsg animal = 4;</code>
+     * <code>.slaughterhouse.grpc.AnimalMsg animal = 6;</code>
      */
     public via.sdj3.grpcslaughterhouse.protobuf.AnimalMsg.Builder getAnimalBuilder() {
       
@@ -796,7 +926,7 @@ private static final long serialVersionUID = 0L;
       return getAnimalFieldBuilder().getBuilder();
     }
     /**
-     * <code>.slaughterhouse.grpc.AnimalMsg animal = 4;</code>
+     * <code>.slaughterhouse.grpc.AnimalMsg animal = 6;</code>
      */
     public via.sdj3.grpcslaughterhouse.protobuf.AnimalMsgOrBuilder getAnimalOrBuilder() {
       if (animalBuilder_ != null) {
@@ -807,7 +937,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.slaughterhouse.grpc.AnimalMsg animal = 4;</code>
+     * <code>.slaughterhouse.grpc.AnimalMsg animal = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         via.sdj3.grpcslaughterhouse.protobuf.AnimalMsg, via.sdj3.grpcslaughterhouse.protobuf.AnimalMsg.Builder, via.sdj3.grpcslaughterhouse.protobuf.AnimalMsgOrBuilder> 

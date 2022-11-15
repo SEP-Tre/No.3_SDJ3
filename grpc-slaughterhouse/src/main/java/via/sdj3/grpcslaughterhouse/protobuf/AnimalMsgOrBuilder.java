@@ -30,4 +30,10 @@ public interface AnimalMsgOrBuilder extends
    * @return The id.
    */
   int getId();
+
+  /**
+   * <code>bool isConverted = 4;</code>
+   * @return The isConverted.
+   */
+  boolean getIsConverted();
 }

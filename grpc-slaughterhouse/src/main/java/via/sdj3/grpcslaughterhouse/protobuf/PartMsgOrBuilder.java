@@ -32,17 +32,29 @@ public interface PartMsgOrBuilder extends
   float getWeight();
 
   /**
-   * <code>.slaughterhouse.grpc.AnimalMsg animal = 4;</code>
+   * <code>bool isInTray = 4;</code>
+   * @return The isInTray.
+   */
+  boolean getIsInTray();
+
+  /**
+   * <code>bool isInProduct = 5;</code>
+   * @return The isInProduct.
+   */
+  boolean getIsInProduct();
+
+  /**
+   * <code>.slaughterhouse.grpc.AnimalMsg animal = 6;</code>
    * @return Whether the animal field is set.
    */
   boolean hasAnimal();
   /**
-   * <code>.slaughterhouse.grpc.AnimalMsg animal = 4;</code>
+   * <code>.slaughterhouse.grpc.AnimalMsg animal = 6;</code>
    * @return The animal.
    */
   via.sdj3.grpcslaughterhouse.protobuf.AnimalMsg getAnimal();
   /**
-   * <code>.slaughterhouse.grpc.AnimalMsg animal = 4;</code>
+   * <code>.slaughterhouse.grpc.AnimalMsg animal = 6;</code>
    */
   via.sdj3.grpcslaughterhouse.protobuf.AnimalMsgOrBuilder getAnimalOrBuilder();
 }

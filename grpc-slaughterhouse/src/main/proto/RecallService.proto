@@ -8,6 +8,7 @@ service SlaughterhouseService
   rpc registerAnimal(AnimalMsg) returns (AnimalMsg);
   rpc CutAnimal(AnimalMsg) returns (PartList);
   rpc PackIntoTray(PartList) returns (TrayList);
+  rpc PackAllLooseParts(PackRequest) returns (TrayList);
   rpc PackForDistribution(TrayList) returns (ProductList);
   rpc PackHalfAnimal(HalfAnimalMsg) returns (ProductMsg);
 }
@@ -15,6 +16,7 @@ message AnimalMsg{
   float weight = 1;
   string type = 2;
   int32 id = 3;
+  bool isConverted = 4;
 }
 
 message PartMsg
@@ -22,7 +24,9 @@ message PartMsg
   int32 partId = 1;
   string partName = 2;
   float weight = 3;
-  AnimalMsg animal = 4;
+  bool isInTray = 4;
+  bool isInProduct = 5;
+  AnimalMsg animal = 6;
 }
 
 message PartList
@@ -57,5 +61,10 @@ message ProductList
 message HalfAnimalMsg
 {
   string animalType=1;
+}
+
+message PackRequest
+{
+  string filler = 1;
 }
 

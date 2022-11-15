@@ -107,6 +107,37 @@ public final class SlaughterhouseServiceGrpc {
     return getPackIntoTrayMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<via.sdj3.grpcslaughterhouse.protobuf.PackRequest,
+      via.sdj3.grpcslaughterhouse.protobuf.TrayList> getPackAllLoosePartsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "PackAllLooseParts",
+      requestType = via.sdj3.grpcslaughterhouse.protobuf.PackRequest.class,
+      responseType = via.sdj3.grpcslaughterhouse.protobuf.TrayList.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<via.sdj3.grpcslaughterhouse.protobuf.PackRequest,
+      via.sdj3.grpcslaughterhouse.protobuf.TrayList> getPackAllLoosePartsMethod() {
+    io.grpc.MethodDescriptor<via.sdj3.grpcslaughterhouse.protobuf.PackRequest, via.sdj3.grpcslaughterhouse.protobuf.TrayList> getPackAllLoosePartsMethod;
+    if ((getPackAllLoosePartsMethod = SlaughterhouseServiceGrpc.getPackAllLoosePartsMethod) == null) {
+      synchronized (SlaughterhouseServiceGrpc.class) {
+        if ((getPackAllLoosePartsMethod = SlaughterhouseServiceGrpc.getPackAllLoosePartsMethod) == null) {
+          SlaughterhouseServiceGrpc.getPackAllLoosePartsMethod = getPackAllLoosePartsMethod =
+              io.grpc.MethodDescriptor.<via.sdj3.grpcslaughterhouse.protobuf.PackRequest, via.sdj3.grpcslaughterhouse.protobuf.TrayList>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "PackAllLooseParts"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  via.sdj3.grpcslaughterhouse.protobuf.PackRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  via.sdj3.grpcslaughterhouse.protobuf.TrayList.getDefaultInstance()))
+              .setSchemaDescriptor(new SlaughterhouseServiceMethodDescriptorSupplier("PackAllLooseParts"))
+              .build();
+        }
+      }
+    }
+    return getPackAllLoosePartsMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<via.sdj3.grpcslaughterhouse.protobuf.TrayList,
       via.sdj3.grpcslaughterhouse.protobuf.ProductList> getPackForDistributionMethod;
 
@@ -240,6 +271,13 @@ public final class SlaughterhouseServiceGrpc {
 
     /**
      */
+    public void packAllLooseParts(via.sdj3.grpcslaughterhouse.protobuf.PackRequest request,
+        io.grpc.stub.StreamObserver<via.sdj3.grpcslaughterhouse.protobuf.TrayList> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPackAllLoosePartsMethod(), responseObserver);
+    }
+
+    /**
+     */
     public void packForDistribution(via.sdj3.grpcslaughterhouse.protobuf.TrayList request,
         io.grpc.stub.StreamObserver<via.sdj3.grpcslaughterhouse.protobuf.ProductList> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPackForDistributionMethod(), responseObserver);
@@ -275,6 +313,13 @@ public final class SlaughterhouseServiceGrpc {
                 via.sdj3.grpcslaughterhouse.protobuf.PartList,
                 via.sdj3.grpcslaughterhouse.protobuf.TrayList>(
                   this, METHODID_PACK_INTO_TRAY)))
+          .addMethod(
+            getPackAllLoosePartsMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                via.sdj3.grpcslaughterhouse.protobuf.PackRequest,
+                via.sdj3.grpcslaughterhouse.protobuf.TrayList>(
+                  this, METHODID_PACK_ALL_LOOSE_PARTS)))
           .addMethod(
             getPackForDistributionMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -333,6 +378,14 @@ public final class SlaughterhouseServiceGrpc {
 
     /**
      */
+    public void packAllLooseParts(via.sdj3.grpcslaughterhouse.protobuf.PackRequest request,
+        io.grpc.stub.StreamObserver<via.sdj3.grpcslaughterhouse.protobuf.TrayList> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getPackAllLoosePartsMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
     public void packForDistribution(via.sdj3.grpcslaughterhouse.protobuf.TrayList request,
         io.grpc.stub.StreamObserver<via.sdj3.grpcslaughterhouse.protobuf.ProductList> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
@@ -381,6 +434,13 @@ public final class SlaughterhouseServiceGrpc {
     public via.sdj3.grpcslaughterhouse.protobuf.TrayList packIntoTray(via.sdj3.grpcslaughterhouse.protobuf.PartList request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getPackIntoTrayMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public via.sdj3.grpcslaughterhouse.protobuf.TrayList packAllLooseParts(via.sdj3.grpcslaughterhouse.protobuf.PackRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getPackAllLoosePartsMethod(), getCallOptions(), request);
     }
 
     /**
@@ -438,6 +498,14 @@ public final class SlaughterhouseServiceGrpc {
 
     /**
      */
+    public com.google.common.util.concurrent.ListenableFuture<via.sdj3.grpcslaughterhouse.protobuf.TrayList> packAllLooseParts(
+        via.sdj3.grpcslaughterhouse.protobuf.PackRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getPackAllLoosePartsMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
     public com.google.common.util.concurrent.ListenableFuture<via.sdj3.grpcslaughterhouse.protobuf.ProductList> packForDistribution(
         via.sdj3.grpcslaughterhouse.protobuf.TrayList request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
@@ -456,8 +524,9 @@ public final class SlaughterhouseServiceGrpc {
   private static final int METHODID_REGISTER_ANIMAL = 0;
   private static final int METHODID_CUT_ANIMAL = 1;
   private static final int METHODID_PACK_INTO_TRAY = 2;
-  private static final int METHODID_PACK_FOR_DISTRIBUTION = 3;
-  private static final int METHODID_PACK_HALF_ANIMAL = 4;
+  private static final int METHODID_PACK_ALL_LOOSE_PARTS = 3;
+  private static final int METHODID_PACK_FOR_DISTRIBUTION = 4;
+  private static final int METHODID_PACK_HALF_ANIMAL = 5;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -486,6 +555,10 @@ public final class SlaughterhouseServiceGrpc {
           break;
         case METHODID_PACK_INTO_TRAY:
           serviceImpl.packIntoTray((via.sdj3.grpcslaughterhouse.protobuf.PartList) request,
+              (io.grpc.stub.StreamObserver<via.sdj3.grpcslaughterhouse.protobuf.TrayList>) responseObserver);
+          break;
+        case METHODID_PACK_ALL_LOOSE_PARTS:
+          serviceImpl.packAllLooseParts((via.sdj3.grpcslaughterhouse.protobuf.PackRequest) request,
               (io.grpc.stub.StreamObserver<via.sdj3.grpcslaughterhouse.protobuf.TrayList>) responseObserver);
           break;
         case METHODID_PACK_FOR_DISTRIBUTION:
@@ -560,6 +633,7 @@ public final class SlaughterhouseServiceGrpc {
               .addMethod(getRegisterAnimalMethod())
               .addMethod(getCutAnimalMethod())
               .addMethod(getPackIntoTrayMethod())
+              .addMethod(getPackAllLoosePartsMethod())
               .addMethod(getPackForDistributionMethod())
               .addMethod(getPackHalfAnimalMethod())
               .build();

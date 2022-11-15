@@ -12,11 +12,12 @@ CREATE TABLE IF NOT EXISTS animal
 );
 CREATE TABLE IF NOT EXISTS part
 (
-    part_id   SERIAL PRIMARY KEY,
-    part_name char(40),
-    weight    float,
-    is_used   bool,
-    animal_id int REFERENCES animal (animal_id)
+    part_id       SERIAL PRIMARY KEY,
+    part_name     char(40),
+    weight        float,
+    is_in_tray    bool,
+    is_in_product bool,
+    animal_id     int REFERENCES animal (animal_id)
 );
 
 

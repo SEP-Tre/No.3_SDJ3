@@ -9,8 +9,12 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productId;
 
-    @JoinTable
-    @OneToMany
+    @OneToMany (fetch = FetchType.EAGER, cascade = { CascadeType.MERGE})
+    @JoinTable (
+            name = "tray_in_product",
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "tray_id")}
+    )
     private List<Tray> trays;
     private String productType;
     private boolean isUsed;
