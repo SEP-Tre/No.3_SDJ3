@@ -2,6 +2,7 @@ package via.sdj3.grpcslaughterhouse.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Tray {
@@ -9,9 +10,9 @@ public class Tray {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int trayId;
 
-    @JoinTable
-    @OneToMany
-    private List<Part> parts;
+
+    @OneToMany(mappedBy = "partId")
+    private Set<Part> parts;
     private float weightCapacity;
     private String partName;
     private boolean isUsed;
@@ -19,7 +20,7 @@ public class Tray {
         isUsed=false;
     }
 
-    public Tray(List<Part> parts, int weightCapacity, String partName)
+    public Tray(Set<Part> parts, int weightCapacity, String partName)
     {
         this.parts = parts;
         this.weightCapacity = weightCapacity;
@@ -37,12 +38,12 @@ public class Tray {
         isUsed = used;
     }
 
-    public List<Part> getParts()
+    public Set<Part> getParts()
     {
         return parts;
     }
 
-    public void setParts(List<Part> parts)
+    public void setParts(Set<Part> parts)
     {
         this.parts = parts;
     }
