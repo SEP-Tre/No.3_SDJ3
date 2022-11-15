@@ -132,7 +132,7 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
                 parts.add(part);
                 partMsgs.add(partMsg);
             });
-            tray.setParts(new HashSet<>(parts));
+            tray.setParts(parts);
             Tray savedTray = trayRepository.save(tray);
             //System.out.println(savedTray);
             availableTrays.add(savedTray);
