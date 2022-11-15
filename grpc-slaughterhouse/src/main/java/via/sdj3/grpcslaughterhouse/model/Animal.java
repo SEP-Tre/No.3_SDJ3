@@ -31,7 +31,7 @@ public class Animal
 
     public void setConverted(boolean converted)
     {
-        isConverted = converted;
+            isConverted = converted;
     }
 
     public int getAnimal_id()
