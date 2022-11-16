@@ -366,8 +366,45 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
 
     @Override
     public void packForDistribution(TrayList request, StreamObserver<ProductList> responseObserver) {
-        super.packForDistribution(request, responseObserver);
+
+        ArrayList<Tray> traysToBePacked = new ArrayList<>();
+        traysToBePacked = convertList(request);
+        ArrayList<Product> productList = new ArrayList<>();
+
+        for (Tray tray : traysToBePacked) {
+
+            ArrayList<Tray> trayOfCurrentProduct = new ArrayList<>();
+            trayOfCurrentProduct.add(tray);
+            Product product = new Product();
+
+            for (Part part : tray.getParts()) {
+                part.setInProduct(true);
+                partRepository.save(part);
+            }
+
+            //productTrays.add(tray);
+            product.setTrays(trayOfCurrentProduct);
+            productList.add(product);
+
+
+            System.out.println("I will create a product using this tray: " + trayOfCurrentProduct.get(0).getParts().size() + //nr of parts
+                    " " + trayOfCurrentProduct.get(0).getParts().get(0).getAnimal().getAnimal_type() + //animal type
+                    " " + trayOfCurrentProduct.get(0).getPartName()); //part name
+            System.out.println("Created a product containing " + product.getTrays().get(0).getParts().size() //nr of parts
+                    + " " + product.getTrays().get(0).getParts().get(0).getAnimal() //animal type
+                    + " " + product.getTrays().get(0).getParts().get(0).getPartName());//part name
+
+
+            Product savedProduct = productRepository.save(product); //Saving the current product into the repo before the next loop
+
+        }
+
+        ProductList productListMsg = getProductList(productList);
+
+        responseObserver.onNext(productListMsg);
+        responseObserver.onCompleted();
     }
+
 
     // Finds the parts needed for a half animal from the requested animal type and makes a product
     @Override
@@ -564,4 +601,19 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
         }
         return animalTrays;
     }
+
+    //Converting Traylist into an ArrayList of Trays.
+    private ArrayList<Tray> convertList(TrayList trayList) {
+
+        ArrayList<Tray> traysArrayList = new ArrayList<>();
+        int trayID = 0;
+
+        for (int i = 0; i < trayList.getTraysList().size(); i++) {
+            trayID = trayList.getTrays(i).getTrayId();
+            traysArrayList.add(trayRepository.findById(trayID).get());
+        }
+        return traysArrayList;
+    }
+
+
 }
