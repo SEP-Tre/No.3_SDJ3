@@ -118,7 +118,7 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
         }
         if (!animalToSave.isConverted()) {
             Animal savedAnimal = animalRepository.save(animalToSave);
-            AnimalMsg savedAnimalMsg = getAnimalMsg(animalToSave);
+            AnimalMsg savedAnimalMsg = getAnimalMsg(savedAnimal);
             responseObserver.onNext(savedAnimalMsg);
             responseObserver.onCompleted();
         } else {
@@ -204,10 +204,9 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
 
     @Override
     public void packIntoTray(PartList request, StreamObserver<TrayList> responseObserver) {
-        //Todo mark animal as used.
-        //Todo Create a check if the parts or animals are already used.
         //Todo Clean up the code
-        //Todo Add the partInTray repo and model
+        //Todo Describe the code
+
         //Getting all the types which are in the PartList
         //Calculating the total weight for each type
         ArrayList<String> types = new ArrayList<>();
@@ -215,6 +214,16 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
         HashMap<String, ArrayList<PartMsg>> allPartsByType = new HashMap<>();
         request.getPartsList().forEach(partMsg ->
         {
+
+            Part part = partRepository.findById(partMsg.getPartId()).get();
+            if (part.isInTray())
+            {
+                responseObserver.onError(new StatusRuntimeException(Status.ABORTED.withDescription(
+                        "Some of the parts are already used in trays.")));
+            }
+            part.setInTray(true);
+            partRepository.save(part);
+
             String partName = partMsg.getPartName();
             Float weight = partMsg.getWeight();
             if (!types.contains(partName)) {
@@ -236,43 +245,26 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
                 allPartsByType.replace(partName, newPartMsgs);
             }
         });
-        System.out.println(types);
-        System.out.println(allWeightsForType);
-        System.out.println(allPartsByType);
+
         //Creating the trays from each
         ArrayList<Tray> availableTrays = new ArrayList<>();
-        // ArrayList<TrayMsg> trayMsgs = new ArrayList<>();
         types.forEach(type ->
         {
             Tray tray = new Tray();
             tray.setWeightCapacity(allWeightsForType.get(type));
             tray.setPartName(type);
             ArrayList<Part> parts = new ArrayList<>();
-            // ArrayList<PartMsg> partMsgs = new ArrayList<>();
             //Creating the ArrayList<TrayMsg> in parallel
             allPartsByType.get(type).forEach(partMsg ->
             {
-                AnimalMsg animalMsg = partMsg.getAnimal();
-                Animal animal = new Animal(animalMsg.getId(), animalMsg.getWeight(), animalMsg.getType(), true);
-                Part part = new Part(animal, type, partMsg.getWeight());
-                parts.add(part);
-                // partMsgs.add(partMsg);
+                Optional<Part> part = partRepository.findById(partMsg.getPartId());
+                parts.add(part.get());
             });
             tray.setParts(parts);
             Tray savedTray = trayRepository.save(tray);
-            //System.out.println(savedTray);
             availableTrays.add(savedTray);
-            /*
-            PartList partList = getPartList(parts);
-            TrayMsg trayMsg = TrayMsg.newBuilder()
-                    .setParts(partList)
-                    .setTrayId(savedTray.getTrayId())
-                    .setWeightCapacity(savedTray.getWeightCapacity())
-                    .setPartName(savedTray.getPartName())
-                    .build();
-            trayMsgs.add(trayMsg);
-            */
         });
+
         TrayList trayList = getTrayList(availableTrays);
         responseObserver.onNext(trayList);
         responseObserver.onCompleted();

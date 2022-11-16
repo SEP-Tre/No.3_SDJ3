@@ -9,6 +9,7 @@ public class Tray {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int trayId;
 
+    //TODO I have change CascadeType from "MERGE" to "ALL"
     @OneToMany (fetch = FetchType.EAGER, cascade = { CascadeType.MERGE})
     @JoinTable(
            name = "part_in_tray",
