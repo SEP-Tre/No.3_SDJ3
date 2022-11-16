@@ -405,6 +405,13 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
         responseObserver.onCompleted();
     }
 
+    @Override
+    public void recallProducts(AnimalMsg request, StreamObserver<ProductList> responseObserver) {
+        int sickAnimalID=request.getId();
+        
+
+    }
+
 
     // Finds the parts needed for a half animal from the requested animal type and makes a product
     @Override
