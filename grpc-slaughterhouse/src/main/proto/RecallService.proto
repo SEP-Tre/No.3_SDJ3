@@ -11,6 +11,7 @@ service SlaughterhouseService
   rpc PackAllLooseParts(PackRequest) returns (TrayList);
   rpc PackForDistribution(TrayList) returns (ProductList);
   rpc PackHalfAnimal(HalfAnimalMsg) returns (ProductMsg);
+  rpc RecallProducts(AnimalMsg) returns (ProductList);
 }
 message AnimalMsg{
   float weight = 1;

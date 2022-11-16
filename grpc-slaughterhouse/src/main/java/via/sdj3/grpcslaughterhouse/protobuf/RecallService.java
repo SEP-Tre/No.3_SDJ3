@@ -86,7 +86,7 @@ public final class RecallService {
       "ProductList\0221\n\010products\030\001 \003(\0132\037.slaughte" +
       "rhouse.grpc.ProductMsg\"#\n\rHalfAnimalMsg\022" +
       "\022\n\nanimalType\030\001 \001(\t\"\035\n\013PackRequest\022\016\n\006fi" +
-      "ller\030\001 \001(\t2\210\004\n\025SlaughterhouseService\022P\n\016" +
+      "ller\030\001 \001(\t2\334\004\n\025SlaughterhouseService\022P\n\016" +
       "registerAnimal\022\036.slaughterhouse.grpc.Ani" +
       "malMsg\032\036.slaughterhouse.grpc.AnimalMsg\022J" +
       "\n\tCutAnimal\022\036.slaughterhouse.grpc.Animal" +
@@ -99,8 +99,10 @@ public final class RecallService {
       "rpc.TrayList\032 .slaughterhouse.grpc.Produ" +
       "ctList\022U\n\016PackHalfAnimal\022\".slaughterhous" +
       "e.grpc.HalfAnimalMsg\032\037.slaughterhouse.gr" +
-      "pc.ProductMsgB(\n$via.sdj3.grpcslaughterh" +
-      "ouse.protobufP\001b\006proto3"
+      "pc.ProductMsg\022R\n\016RecallProducts\022\036.slaugh" +
+      "terhouse.grpc.AnimalMsg\032 .slaughterhouse" +
+      ".grpc.ProductListB(\n$via.sdj3.grpcslaugh" +
+      "terhouse.protobufP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

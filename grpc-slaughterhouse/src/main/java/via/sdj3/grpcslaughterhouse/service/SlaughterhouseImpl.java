@@ -277,7 +277,7 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
         responseObserver.onNext(trayList);
         responseObserver.onCompleted();
     }
-
+    
     // Packs all parts that are not currently in a tray
     public void packAllLooseParts(PackRequest request, StreamObserver<TrayList> responseObserver) {
         ArrayList<Part> allParts = (ArrayList<Part>) partRepository.findAll();
@@ -393,9 +393,9 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
             System.out.println("Created a product containing " + product.getTrays().get(0).getParts().size() //nr of parts
                     + " " + product.getTrays().get(0).getParts().get(0).getAnimal() //animal type
                     + " " + product.getTrays().get(0).getParts().get(0).getPartName());//part name
-
-
-            Product savedProduct = productRepository.save(product); //Saving the current product into the repo before the next loop
+            
+            productRepository.save(product); //Saving the current product into the repo before the next loop 
+            // TODO: 16/11/2022 I AM NOT SURE IF SAVING THE PRODUCT IS NECESSARY IF I AM JUST PASSING ON A PRODUCLIST? 
 
         }
 
