@@ -15,10 +15,8 @@ import via.sdj3.grpcslaughterhouse.repository.PartRepository;
 import via.sdj3.grpcslaughterhouse.repository.ProductRepository;
 import via.sdj3.grpcslaughterhouse.repository.TrayRepository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.lang.reflect.Array;
+import java.util.*;
 
 
 @GRpcService
@@ -277,7 +275,7 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
         responseObserver.onNext(trayList);
         responseObserver.onCompleted();
     }
-    
+
     // Packs all parts that are not currently in a tray
     public void packAllLooseParts(PackRequest request, StreamObserver<TrayList> responseObserver) {
         ArrayList<Part> allParts = (ArrayList<Part>) partRepository.findAll();
@@ -381,7 +379,7 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
                 part.setInProduct(true);
                 partRepository.save(part);
             }
-
+            product.setProductType(tray.getPartName());
             //productTrays.add(tray);
             product.setTrays(trayOfCurrentProduct);
             productList.add(product);
@@ -393,9 +391,11 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
             System.out.println("Created a product containing " + product.getTrays().get(0).getParts().size() //nr of parts
                     + " " + product.getTrays().get(0).getParts().get(0).getAnimal() //animal type
                     + " " + product.getTrays().get(0).getParts().get(0).getPartName());//part name
-            
-            productRepository.save(product); //Saving the current product into the repo before the next loop 
-            // TODO: 16/11/2022 I AM NOT SURE IF SAVING THE PRODUCT IS NECESSARY IF I AM JUST PASSING ON A PRODUCLIST? 
+
+
+            productRepository.save(product); //Saving the current product into the repo before the next loop
+            // TODO: 16/11/2022 I AM NOT SURE IF SAVING THE PRODUCT IS NECESSARY IF I AM JUST PASSING ON A PRODUCLIST?
+
 
         }
 
@@ -407,9 +407,45 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
 
     @Override
     public void recallProducts(AnimalMsg request, StreamObserver<ProductList> responseObserver) {
-        int sickAnimalID=request.getId();
-        
+        int sickAnimalID = request.getId();
 
+        List<Part> sickParts = partRepository.findAllByAnimalId(sickAnimalID);
+        ArrayList<Part> sickPartsList = new ArrayList<>(sickParts);
+        ArrayList<Tray> traysWithSickMeat = new ArrayList<>();
+        ArrayList<Product> productsToRecall = new ArrayList<>();
+
+        //triple for loop to find all the trays that have been in contact with the meat of a diseased animal.
+        for (Part part : sickPartsList) {
+            int sickPartID = part.getPartId();
+
+            for (Tray tray : getAllTrays()) {
+
+                for (int i = 0; i <= tray.getParts().size(); i++) {
+                    if (tray.getParts().get(i).getPartId() == sickPartID && !traysWithSickMeat.contains(tray)) {
+                        traysWithSickMeat.add(tray);
+
+                    }
+                }
+            }
+        }
+        //Another triple loop-> Every product -> All trays from every product -> compare their ID's with the trays containing sick meat. If it is a match,
+        //add it to the list of products to be recalled.
+
+        for (Product product : getAllProducts()) {
+            for (int i = 0; i <= product.getTrays().size(); i++) {
+                for (int j = 0; j <= traysWithSickMeat.size(); j++) {
+                    if (product.getTrays().get(i).getTrayId() == traysWithSickMeat.get(j).getTrayId()) {
+                        productsToRecall.add(product);
+                        System.out.println("<!ALERT!> The product with the ID "+product.getProductId()+" which is a "+product.getProductType()+" must be immediately recalled!!!");
+                    }
+                }
+            }
+        }
+
+        ProductList productListMsg = getProductList(productsToRecall);
+
+        responseObserver.onNext(productListMsg);
+        responseObserver.onCompleted();
     }
 
 
@@ -622,5 +658,12 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
         return traysArrayList;
     }
 
+    private ArrayList<Tray> getAllTrays() {
+        return new ArrayList<>((Collection) trayRepository);
+    }
+
+    private ArrayList<Product> getAllProducts() {
+        return new ArrayList<>((Collection) productRepository);
+    }
 
 }
