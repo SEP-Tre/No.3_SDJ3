@@ -11,12 +11,18 @@ service SlaughterhouseService
   rpc PackAllLooseParts(PackRequest) returns (TrayList);
   rpc PackForDistribution(TrayList) returns (ProductList);
   rpc PackHalfAnimal(HalfAnimalMsg) returns (ProductMsg);
+  rpc AnimalsInProduct(ProductID) returns (AnimalList);
 }
 message AnimalMsg{
   float weight = 1;
   string type = 2;
   int32 id = 3;
   bool isConverted = 4;
+}
+
+message AnimalList
+{
+  repeated AnimalMsg animals= 1;
 }
 
 message PartMsg
@@ -67,4 +73,7 @@ message PackRequest
 {
   string filler = 1;
 }
-
+message ProductID
+{
+  int32 id = 1;
+}

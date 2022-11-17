@@ -12,6 +12,7 @@ public class Animal
     private String animal_type;
 
     private boolean isConverted;
+
     public Animal()
     {
     }
@@ -31,7 +32,7 @@ public class Animal
 
     public void setConverted(boolean converted)
     {
-            isConverted = converted;
+        isConverted = converted;
     }
 
     public int getAnimal_id()
@@ -65,7 +66,8 @@ public class Animal
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Animal{" +
                 "animal_id=" + animal_id +
                 ", weight=" + weight +

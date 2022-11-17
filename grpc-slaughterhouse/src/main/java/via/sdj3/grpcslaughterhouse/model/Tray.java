@@ -4,24 +4,27 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Tray {
+public class Tray
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int trayId;
 
     //TODO I have change CascadeType from "MERGE" to "ALL"
-    @OneToMany (fetch = FetchType.EAGER, cascade = { CascadeType.MERGE})
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     @JoinTable(
-           name = "part_in_tray",
-           joinColumns = {@JoinColumn(name = "tray_id")},
+            name = "part_in_tray",
+            joinColumns = {@JoinColumn(name = "tray_id")},
             inverseJoinColumns = {@JoinColumn(name = "part_id")}
     )
     private List<Part> parts;
     private float weightCapacity;
     private String partName;
     private boolean isUsed;
-    public Tray() {
-        isUsed=false;
+
+    public Tray()
+    {
+        isUsed = false;
     }
 
     public Tray(List<Part> parts, int weightCapacity, String partName)
@@ -29,7 +32,7 @@ public class Tray {
         this.parts = parts;
         this.weightCapacity = weightCapacity;
         this.partName = partName;
-        isUsed=false;
+        isUsed = false;
     }
 
     public boolean isUsed()
@@ -88,7 +91,8 @@ public class Tray {
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Tray{" +
                 "trayId=" + trayId +
                 ", parts=" + parts +

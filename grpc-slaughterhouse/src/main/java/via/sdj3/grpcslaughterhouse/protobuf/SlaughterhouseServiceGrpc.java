@@ -200,6 +200,37 @@ public final class SlaughterhouseServiceGrpc {
     return getPackHalfAnimalMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<via.sdj3.grpcslaughterhouse.protobuf.ProductID,
+      via.sdj3.grpcslaughterhouse.protobuf.AnimalList> getAnimalsInProductMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "AnimalsInProduct",
+      requestType = via.sdj3.grpcslaughterhouse.protobuf.ProductID.class,
+      responseType = via.sdj3.grpcslaughterhouse.protobuf.AnimalList.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<via.sdj3.grpcslaughterhouse.protobuf.ProductID,
+      via.sdj3.grpcslaughterhouse.protobuf.AnimalList> getAnimalsInProductMethod() {
+    io.grpc.MethodDescriptor<via.sdj3.grpcslaughterhouse.protobuf.ProductID, via.sdj3.grpcslaughterhouse.protobuf.AnimalList> getAnimalsInProductMethod;
+    if ((getAnimalsInProductMethod = SlaughterhouseServiceGrpc.getAnimalsInProductMethod) == null) {
+      synchronized (SlaughterhouseServiceGrpc.class) {
+        if ((getAnimalsInProductMethod = SlaughterhouseServiceGrpc.getAnimalsInProductMethod) == null) {
+          SlaughterhouseServiceGrpc.getAnimalsInProductMethod = getAnimalsInProductMethod =
+              io.grpc.MethodDescriptor.<via.sdj3.grpcslaughterhouse.protobuf.ProductID, via.sdj3.grpcslaughterhouse.protobuf.AnimalList>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "AnimalsInProduct"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  via.sdj3.grpcslaughterhouse.protobuf.ProductID.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  via.sdj3.grpcslaughterhouse.protobuf.AnimalList.getDefaultInstance()))
+              .setSchemaDescriptor(new SlaughterhouseServiceMethodDescriptorSupplier("AnimalsInProduct"))
+              .build();
+        }
+      }
+    }
+    return getAnimalsInProductMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -290,6 +321,13 @@ public final class SlaughterhouseServiceGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPackHalfAnimalMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void animalsInProduct(via.sdj3.grpcslaughterhouse.protobuf.ProductID request,
+        io.grpc.stub.StreamObserver<via.sdj3.grpcslaughterhouse.protobuf.AnimalList> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAnimalsInProductMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -334,6 +372,13 @@ public final class SlaughterhouseServiceGrpc {
                 via.sdj3.grpcslaughterhouse.protobuf.HalfAnimalMsg,
                 via.sdj3.grpcslaughterhouse.protobuf.ProductMsg>(
                   this, METHODID_PACK_HALF_ANIMAL)))
+          .addMethod(
+            getAnimalsInProductMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                via.sdj3.grpcslaughterhouse.protobuf.ProductID,
+                via.sdj3.grpcslaughterhouse.protobuf.AnimalList>(
+                  this, METHODID_ANIMALS_IN_PRODUCT)))
           .build();
     }
   }
@@ -399,6 +444,14 @@ public final class SlaughterhouseServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getPackHalfAnimalMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void animalsInProduct(via.sdj3.grpcslaughterhouse.protobuf.ProductID request,
+        io.grpc.stub.StreamObserver<via.sdj3.grpcslaughterhouse.protobuf.AnimalList> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getAnimalsInProductMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -455,6 +508,13 @@ public final class SlaughterhouseServiceGrpc {
     public via.sdj3.grpcslaughterhouse.protobuf.ProductMsg packHalfAnimal(via.sdj3.grpcslaughterhouse.protobuf.HalfAnimalMsg request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getPackHalfAnimalMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public via.sdj3.grpcslaughterhouse.protobuf.AnimalList animalsInProduct(via.sdj3.grpcslaughterhouse.protobuf.ProductID request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getAnimalsInProductMethod(), getCallOptions(), request);
     }
   }
 
@@ -519,6 +579,14 @@ public final class SlaughterhouseServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getPackHalfAnimalMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<via.sdj3.grpcslaughterhouse.protobuf.AnimalList> animalsInProduct(
+        via.sdj3.grpcslaughterhouse.protobuf.ProductID request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getAnimalsInProductMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_REGISTER_ANIMAL = 0;
@@ -527,6 +595,7 @@ public final class SlaughterhouseServiceGrpc {
   private static final int METHODID_PACK_ALL_LOOSE_PARTS = 3;
   private static final int METHODID_PACK_FOR_DISTRIBUTION = 4;
   private static final int METHODID_PACK_HALF_ANIMAL = 5;
+  private static final int METHODID_ANIMALS_IN_PRODUCT = 6;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -568,6 +637,10 @@ public final class SlaughterhouseServiceGrpc {
         case METHODID_PACK_HALF_ANIMAL:
           serviceImpl.packHalfAnimal((via.sdj3.grpcslaughterhouse.protobuf.HalfAnimalMsg) request,
               (io.grpc.stub.StreamObserver<via.sdj3.grpcslaughterhouse.protobuf.ProductMsg>) responseObserver);
+          break;
+        case METHODID_ANIMALS_IN_PRODUCT:
+          serviceImpl.animalsInProduct((via.sdj3.grpcslaughterhouse.protobuf.ProductID) request,
+              (io.grpc.stub.StreamObserver<via.sdj3.grpcslaughterhouse.protobuf.AnimalList>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -636,6 +709,7 @@ public final class SlaughterhouseServiceGrpc {
               .addMethod(getPackAllLoosePartsMethod())
               .addMethod(getPackForDistributionMethod())
               .addMethod(getPackHalfAnimalMethod())
+              .addMethod(getAnimalsInProductMethod())
               .build();
         }
       }

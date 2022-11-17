@@ -10,7 +10,7 @@ public class Part
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int partId;
 
-    @JoinColumn(name="animal_id")
+    @JoinColumn(name = "animal_id")
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     private Animal animal;
     private String partName;
@@ -18,6 +18,7 @@ public class Part
     // Needed to differentiate exactly what used meant. There are two different contexts for it
     private boolean isInTray;
     private boolean isInProduct;
+
     public Part()
     {
         isInTray = false;
@@ -34,19 +35,23 @@ public class Part
         this.weight = weight;
     }
 
-    public boolean isInTray() {
+    public boolean isInTray()
+    {
         return isInTray;
     }
 
-    public void setInTray(boolean inTray) {
+    public void setInTray(boolean inTray)
+    {
         isInTray = inTray;
     }
 
-    public boolean isInProduct() {
+    public boolean isInProduct()
+    {
         return isInProduct;
     }
 
-    public void setInProduct(boolean inProduct) {
+    public void setInProduct(boolean inProduct)
+    {
         isInProduct = inProduct;
     }
 
@@ -91,7 +96,8 @@ public class Part
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Part{" +
                 "partId=" + partId +
                 ", animal=" + animal +
