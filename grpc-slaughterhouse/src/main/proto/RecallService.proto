@@ -12,6 +12,7 @@ service SlaughterhouseService
   rpc PackForDistribution(TrayList) returns (ProductList);
   rpc PackHalfAnimal(HalfAnimalMsg) returns (ProductMsg);
   rpc AnimalsInProduct(ProductID) returns (AnimalList);
+  rpc RecallProducts(AnimalMsg) returns (ProductList);
 }
 message AnimalMsg{
   float weight = 1;

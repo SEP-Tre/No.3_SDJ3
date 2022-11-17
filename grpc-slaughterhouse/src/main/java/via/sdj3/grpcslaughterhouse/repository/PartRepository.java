@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface PartRepository extends CrudRepository<Part, Integer>
 {
+    List<Part> findAllByAnimal(Animal animal);
 }
