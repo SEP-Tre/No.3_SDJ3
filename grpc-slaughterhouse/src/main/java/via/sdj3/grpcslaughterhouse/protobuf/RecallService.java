@@ -20,6 +20,11 @@ public final class RecallService {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_slaughterhouse_grpc_AnimalMsg_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_slaughterhouse_grpc_AnimalList_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_slaughterhouse_grpc_AnimalList_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_slaughterhouse_grpc_PartMsg_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -59,6 +64,11 @@ public final class RecallService {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_slaughterhouse_grpc_PackRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_slaughterhouse_grpc_ProductID_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_slaughterhouse_grpc_ProductID_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -88,7 +98,7 @@ public final class RecallService {
       "oducts\030\001 \003(\0132\037.slaughterhouse.grpc.Produ" +
       "ctMsg\"#\n\rHalfAnimalMsg\022\022\n\nanimalType\030\001 \001" +
       "(\t\"\035\n\013PackRequest\022\016\n\006filler\030\001 \001(\t\"\027\n\tPro" +
-      "ductID\022\n\n\002id\030\001 \001(\0052\335\004\n\025SlaughterhouseSer" +
+      "ductID\022\n\n\002id\030\001 \001(\0052\261\005\n\025SlaughterhouseSer" +
       "vice\022P\n\016registerAnimal\022\036.slaughterhouse." +
       "grpc.AnimalMsg\032\036.slaughterhouse.grpc.Ani" +
       "malMsg\022J\n\tCutAnimal\022\036.slaughterhouse.grp" +
@@ -103,8 +113,10 @@ public final class RecallService {
       "hterhouse.grpc.HalfAnimalMsg\032\037.slaughter" +
       "house.grpc.ProductMsg\022S\n\020AnimalsInProduc" +
       "t\022\036.slaughterhouse.grpc.ProductID\032\037.slau" +
-      "ghterhouse.grpc.AnimalListB(\n$via.sdj3.g" +
-      "rpcslaughterhouse.protobufP\001b\006proto3"
+      "ghterhouse.grpc.AnimalList\022R\n\016RecallProd" +
+      "ucts\022\036.slaughterhouse.grpc.AnimalMsg\032 .s" +
+      "laughterhouse.grpc.ProductListB(\n$via.sd" +
+      "j3.grpcslaughterhouse.protobufP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -116,54 +128,66 @@ public final class RecallService {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_slaughterhouse_grpc_AnimalMsg_descriptor,
         new java.lang.String[] { "Weight", "Type", "Id", "IsConverted", });
-    internal_static_slaughterhouse_grpc_PartMsg_descriptor =
+    internal_static_slaughterhouse_grpc_AnimalList_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_slaughterhouse_grpc_AnimalList_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_slaughterhouse_grpc_AnimalList_descriptor,
+        new java.lang.String[] { "Animals", });
+    internal_static_slaughterhouse_grpc_PartMsg_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_slaughterhouse_grpc_PartMsg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_slaughterhouse_grpc_PartMsg_descriptor,
         new java.lang.String[] { "PartId", "PartName", "Weight", "IsInTray", "IsInProduct", "Animal", });
     internal_static_slaughterhouse_grpc_PartList_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_slaughterhouse_grpc_PartList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_slaughterhouse_grpc_PartList_descriptor,
         new java.lang.String[] { "Parts", });
     internal_static_slaughterhouse_grpc_TrayMsg_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_slaughterhouse_grpc_TrayMsg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_slaughterhouse_grpc_TrayMsg_descriptor,
         new java.lang.String[] { "TrayId", "WeightCapacity", "PartName", "Parts", });
     internal_static_slaughterhouse_grpc_TrayList_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_slaughterhouse_grpc_TrayList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_slaughterhouse_grpc_TrayList_descriptor,
         new java.lang.String[] { "Trays", });
     internal_static_slaughterhouse_grpc_ProductMsg_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_slaughterhouse_grpc_ProductMsg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_slaughterhouse_grpc_ProductMsg_descriptor,
         new java.lang.String[] { "ProductId", "ProductType", "Trays", });
     internal_static_slaughterhouse_grpc_ProductList_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_slaughterhouse_grpc_ProductList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_slaughterhouse_grpc_ProductList_descriptor,
         new java.lang.String[] { "Products", });
     internal_static_slaughterhouse_grpc_HalfAnimalMsg_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_slaughterhouse_grpc_HalfAnimalMsg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_slaughterhouse_grpc_HalfAnimalMsg_descriptor,
         new java.lang.String[] { "AnimalType", });
     internal_static_slaughterhouse_grpc_PackRequest_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_slaughterhouse_grpc_PackRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_slaughterhouse_grpc_PackRequest_descriptor,
         new java.lang.String[] { "Filler", });
+    internal_static_slaughterhouse_grpc_ProductID_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_slaughterhouse_grpc_ProductID_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_slaughterhouse_grpc_ProductID_descriptor,
+        new java.lang.String[] { "Id", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

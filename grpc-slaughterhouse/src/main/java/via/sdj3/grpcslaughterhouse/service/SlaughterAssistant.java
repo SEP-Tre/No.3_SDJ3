@@ -408,4 +408,36 @@ public class SlaughterAssistant
         }
         return animalTrays;
     }
+
+    //Converting Traylist into an ArrayList of Trays.
+    public ArrayList<Tray> convertList(TrayList trayList) {
+
+        ArrayList<Tray> traysArrayList = new ArrayList<>();
+        int trayID = 0;
+
+        for (int i = 0; i < trayList.getTraysList().size(); i++) {
+            trayID = trayList.getTrays(i).getTrayId();
+            traysArrayList.add(trayRepository.findById(trayID).get());
+        }
+        return traysArrayList;
+    }
+
+    public ArrayList<Tray> getAllTrays() {
+        return (ArrayList<Tray>) trayRepository.findAll();
+    }
+
+    public ArrayList<Product> getAllProducts() {
+        return  (ArrayList<Product>)productRepository.findAll();
+    }
+
+
+    public List<Part> findPartsOfSickAnimal(int id)
+    {
+        Animal animal=animalRepository.findById(id).get();
+
+        System.out.println("findPartsOfSickAnimal got the animal with this id"+animal.getAnimal_id());
+        System.out.println("findPartsOfSickAnimal got this many parts from the sick animal using the partRepository"+partRepository.findAllByAnimal(animal).size());
+        return partRepository.findAllByAnimal(animal);
+
+    }
 }
