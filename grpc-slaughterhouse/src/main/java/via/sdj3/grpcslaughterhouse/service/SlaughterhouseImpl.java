@@ -408,21 +408,26 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
     @Override
     public void recallProducts(AnimalMsg request, StreamObserver<ProductList> responseObserver) {
         int sickAnimalID = request.getId();
-
-        List<Part> sickParts = partRepository.findAllByAnimalId(sickAnimalID);
+        List<Part> sickParts = findPartsOfSickAnimal(sickAnimalID);
         ArrayList<Part> sickPartsList = new ArrayList<>(sickParts);
         ArrayList<Tray> traysWithSickMeat = new ArrayList<>();
         ArrayList<Product> productsToRecall = new ArrayList<>();
 
+        System.out.println("Start of recallProducts");
+        System.out.println("Sick parts contains "+sickParts.size()+" elements");
+
+        System.out.println("First for, second loop looping through all the trays. Number of all trays="+getAllTrays().size());
         //triple for loop to find all the trays that have been in contact with the meat of a diseased animal.
         for (Part part : sickPartsList) {
             int sickPartID = part.getPartId();
 
             for (Tray tray : getAllTrays()) {
 
-                for (int i = 0; i <= tray.getParts().size(); i++) {
+
+                for (int i = 0; i <= tray.getParts().size()-1; i++) {
                     if (tray.getParts().get(i).getPartId() == sickPartID && !traysWithSickMeat.contains(tray)) {
                         traysWithSickMeat.add(tray);
+                        System.out.println("Adding the tray to the list of sick trays: tray ID:"+tray.getTrayId() +" part name: "+tray.getPartName());
 
                     }
                 }
@@ -431,10 +436,13 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
         //Another triple loop-> Every product -> All trays from every product -> compare their ID's with the trays containing sick meat. If it is a match,
         //add it to the list of products to be recalled.
 
+        System.out.println("After the first three for loops, there are "+traysWithSickMeat.size()+ " trays containing sick meat");
+        System.out.println("Second for, first loop, looking through all the products. nr of all products: "+getAllProducts().size());
         for (Product product : getAllProducts()) {
-            for (int i = 0; i <= product.getTrays().size(); i++) {
-                for (int j = 0; j <= traysWithSickMeat.size(); j++) {
-                    if (product.getTrays().get(i).getTrayId() == traysWithSickMeat.get(j).getTrayId()) {
+
+            for (Tray tray: product.getTrays()) {
+                for (Tray tray1:traysWithSickMeat) {
+                    if (tray.getTrayId() == tray1.getTrayId()) {
                         productsToRecall.add(product);
                         System.out.println("<!ALERT!> The product with the ID "+product.getProductId()+" which is a "+product.getProductType()+" must be immediately recalled!!!");
                     }
@@ -659,11 +667,21 @@ public class SlaughterhouseImpl extends SlaughterhouseServiceGrpc.Slaughterhouse
     }
 
     private ArrayList<Tray> getAllTrays() {
-        return new ArrayList<>((Collection) trayRepository);
+        return (ArrayList<Tray>) trayRepository.findAll();
     }
 
     private ArrayList<Product> getAllProducts() {
-        return new ArrayList<>((Collection) productRepository);
+        return  (ArrayList<Product>)productRepository.findAll();
     }
 
+
+    private List<Part> findPartsOfSickAnimal(int id)
+    {
+        Animal animal=animalRepository.findById(id).get();
+
+        System.out.println("findPartsOfSickAnimal got the animal with this id"+animal.getAnimal_id());
+        System.out.println("findPartsOfSickAnimal got this many parts from the sick animal using the partRepository"+partRepository.findAllByAnimal(animal).size());
+        return partRepository.findAllByAnimal(animal);
+
+    }
 }
